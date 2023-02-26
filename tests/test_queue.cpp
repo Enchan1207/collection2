@@ -30,22 +30,22 @@ TEST(QueueTest, testOperateWithOrdinallySize) {
 
     // キューの長さだけ値を追加
     for (int i = 0; i < queueLength; i++) {
-        EXPECT_EQ(queue.enqueue(i + 1), QueueOperationResult::Success);
+        EXPECT_EQ(queue.enqueue(i + 1), OperationResult::Success);
     }
 
     // 範囲外の追加
-    EXPECT_EQ(queue.enqueue(0), QueueOperationResult::Overflow);
+    EXPECT_EQ(queue.enqueue(0), OperationResult::Overflow);
 
     // 値を取り出す
     for (int i = 0; i < queueLength; i++) {
         int value = 0;
-        EXPECT_EQ(queue.dequeue(&value), QueueOperationResult::Success);
+        EXPECT_EQ(queue.dequeue(&value), OperationResult::Success);
         EXPECT_EQ(value, i + 1);
     }
 
     // 範囲外の取り出し
     int dummy = 0;
-    EXPECT_EQ(queue.dequeue(&dummy), QueueOperationResult::Empty);
+    EXPECT_EQ(queue.dequeue(&dummy), OperationResult::Empty);
 }
 
 TEST(QueueTest, testOperateWithExceptionalSize) {
@@ -57,22 +57,22 @@ TEST(QueueTest, testOperateWithExceptionalSize) {
     // キューの長さに最も近い2の冪数回だけ値を追加
     const int expectedQueueLength = 64;
     for (int i = 0; i < expectedQueueLength; i++) {
-        EXPECT_EQ(queue.enqueue(i + 1), QueueOperationResult::Success);
+        EXPECT_EQ(queue.enqueue(i + 1), OperationResult::Success);
     }
 
     // 範囲外となるか?
-    EXPECT_EQ(queue.enqueue(0), QueueOperationResult::Overflow);
+    EXPECT_EQ(queue.enqueue(0), OperationResult::Overflow);
 
     // 値を取り出す
     for (int i = 0; i < expectedQueueLength; i++) {
         int value = 0;
-        EXPECT_EQ(queue.dequeue(&value), QueueOperationResult::Success);
+        EXPECT_EQ(queue.dequeue(&value), OperationResult::Success);
         EXPECT_EQ(value, i + 1);
     }
 
     // 範囲外の取り出しとなるか?
     int dummy = 0;
-    EXPECT_EQ(queue.dequeue(&dummy), QueueOperationResult::Empty);
+    EXPECT_EQ(queue.dequeue(&dummy), OperationResult::Empty);
 }
 
 TEST(QueueTest, testOperateWithZeroSize) {
@@ -81,8 +81,8 @@ TEST(QueueTest, testOperateWithZeroSize) {
 
     // 値の追加・取り出しに失敗する
     int value = 1;
-    EXPECT_EQ(queue.enqueue(value), QueueOperationResult::Overflow);
-    EXPECT_EQ(queue.dequeue(&value), QueueOperationResult::Empty);
+    EXPECT_EQ(queue.enqueue(value), OperationResult::Overflow);
+    EXPECT_EQ(queue.dequeue(&value), OperationResult::Empty);
 }
 
 TEST(QueueTest, testOperateWithOneSize) {
@@ -93,11 +93,11 @@ TEST(QueueTest, testOperateWithOneSize) {
 
     // 値の追加・取り出しが問題なく成功するか
     int value = 1;
-    EXPECT_EQ(queue.enqueue(value), QueueOperationResult::Success);
-    EXPECT_EQ(queue.enqueue(value + 1), QueueOperationResult::Overflow);
+    EXPECT_EQ(queue.enqueue(value), OperationResult::Success);
+    EXPECT_EQ(queue.enqueue(value + 1), OperationResult::Overflow);
 
     value = 0;
-    EXPECT_EQ(queue.dequeue(&value), QueueOperationResult::Success);
+    EXPECT_EQ(queue.dequeue(&value), OperationResult::Success);
     EXPECT_EQ(value, 1);
-    EXPECT_EQ(queue.dequeue(&value), QueueOperationResult::Empty);
+    EXPECT_EQ(queue.dequeue(&value), OperationResult::Empty);
 }

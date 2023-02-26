@@ -2,22 +2,15 @@
 // キュー
 //
 
-#ifndef _QUEUE_H_
-#define _QUEUE_H_
+#ifndef _COLLECTION2_QUEUE_H_
+#define _COLLECTION2_QUEUE_H_
 
 #include <climits>
 #include <cstdint>
 
-namespace collection2 {
+#include "common.hpp"
 
-/**
- * @brief キュー操作結果
- */
-enum class QueueOperationResult {
-    Success,
-    Overflow,
-    Empty
-};
+namespace collection2 {
 
 /**
  * @brief キューサイズを管理する変数の型
@@ -73,17 +66,17 @@ class Queue {
      * @brief キューにデータを追加
      *
      * @param data 追加するデータ
-     * @return QueueOperationResult 操作結果
+     * @return OperationResult 操作結果
      */
-    QueueOperationResult enqueue(const Element& data);
+    OperationResult enqueue(const Element& data);
 
     /**
      * @brief キューからデータを取り出し
      *
      * @param data 取り出したデータの格納先
-     * @return QueueOperationResult 操作結果
+     * @return OperationResult 操作結果
      */
-    QueueOperationResult dequeue(Element* const data);
+    OperationResult dequeue(Element* const data);
 
     /**
      * @brief キューに値を追加できるか
@@ -97,7 +90,7 @@ class Queue {
     /**
      * @brief キューが空かどうか
      *
-     * @return bool 空ならtrue、データが存在すればfalse
+     * @return bool
      */
     bool isEmpty() const {
         return amount == 0;
@@ -126,10 +119,10 @@ Queue<Element>::Queue(Element* const data, const queue_size_t& dataSize) : inter
 };
 
 template <typename Element>
-QueueOperationResult Queue<Element>::enqueue(const Element& data) {
+OperationResult Queue<Element>::enqueue(const Element& data) {
     // キューがいっぱいなら戻る
     if (!hasSpace()) {
-        return QueueOperationResult::Overflow;
+        return OperationResult::Overflow;
     }
 
     // tailの位置にデータを書き込む
@@ -138,14 +131,14 @@ QueueOperationResult Queue<Element>::enqueue(const Element& data) {
     tail = (tail + 1) & (internalDataSize - 1);
     amount++;
 
-    return QueueOperationResult::Success;
+    return OperationResult::Success;
 }
 
 template <typename Element>
-QueueOperationResult Queue<Element>::dequeue(Element* const data) {
+OperationResult Queue<Element>::dequeue(Element* const data) {
     // キューが空なら戻る
     if (isEmpty()) {
-        return QueueOperationResult::Empty;
+        return OperationResult::Empty;
     }
 
     // 読み出して渡す
@@ -154,7 +147,7 @@ QueueOperationResult Queue<Element>::dequeue(Element* const data) {
     head = (head + 1) & (internalDataSize - 1);
     amount--;
 
-    return QueueOperationResult::Success;
+    return OperationResult::Success;
 }
 
 }  // namespace collection2
