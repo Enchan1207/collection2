@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include "queue.hpp"
+#include "collection2/queue.hpp"
 
 using namespace collection2;
 

@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include "list.hpp"
+#include "collection2/list.hpp"
 
 using namespace collection2;
 

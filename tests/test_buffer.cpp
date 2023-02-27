@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include "buffer.hpp"
+#include "collection2/buffer.hpp"
 
 using namespace collection2;
 

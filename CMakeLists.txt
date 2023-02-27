@@ -8,6 +8,16 @@ project(collection2
     LANGUAGES C CXX
 )
 
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# ライブラリの構成
+add_library(collection2 INTERFACE)
+target_include_directories(collection2 INTERFACE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 # 依存関係としてビルドされている場合は単体テストディレクトリをaddしない
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     option(COLLECTION2_BUILD_TESTS "whether to build tests" ON)

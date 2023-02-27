@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 
-#include "stack.hpp"
+#include "collection2/stack.hpp"
 
 using namespace collection2;
 
