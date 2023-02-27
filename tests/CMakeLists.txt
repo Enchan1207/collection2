@@ -19,6 +19,7 @@ include(GoogleTest)
 add_executable(collection2_test)
 target_sources(collection2_test PRIVATE
     test_queue.cpp
+    test_buffer.cpp
     test_stack.cpp
 )
 target_link_libraries(collection2_test PRIVATE
