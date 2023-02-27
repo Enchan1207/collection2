@@ -39,5 +39,5 @@ install(TARGETS collection2
 
 # ヘッダファイルをインストール
 install(DIRECTORY ${collection2_SOURCE_DIR}/include/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    DESTINATION include/collection2
 )
