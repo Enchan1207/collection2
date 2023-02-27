@@ -19,7 +19,7 @@ TEST(QueueTest, testInstantiate) {
         char charactor;
     };
     Structure structQueueData[8] = {0};
-    Queue<struct Structure> structQueue(structQueueData, 8);
+    Queue<Structure> structQueue(structQueueData, 8);
 }
 
 TEST(QueueTest, testOperateWithOrdinallySize) {

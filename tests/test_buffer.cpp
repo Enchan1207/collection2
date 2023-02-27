@@ -19,7 +19,7 @@ TEST(BufferTest, testInstantiate) {
         char charactor;
     };
     Structure structBufferData[8] = {0};
-    Buffer<struct Structure> structBuffer(structBufferData, 8);
+    Buffer<Structure> structBuffer(structBufferData, 8);
 }
 
 TEST(BufferTest, testOperateWithOrdinallySize) {

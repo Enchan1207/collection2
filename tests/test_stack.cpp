@@ -19,7 +19,7 @@ TEST(StackTest, testInstantiate) {
         char charactor;
     };
     Structure structStackData[8] = {0};
-    Stack<struct Structure> structStack(structStackData, 8);
+    Stack<Structure> structStack(structStackData, 8);
 }
 
 TEST(StackTest, testOperate) {
