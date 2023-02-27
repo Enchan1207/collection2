@@ -8,8 +8,6 @@ project(collection2
     LANGUAGES C CXX
 )
 
-add_subdirectory(src)
-
 # 依存関係としてビルドされている場合は単体テストディレクトリをaddしない
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     option(COLLECTION2_BUILD_TESTS "whether to build tests" ON)
