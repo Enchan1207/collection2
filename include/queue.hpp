@@ -108,7 +108,7 @@ Queue<Element>::Queue(Element* const data, const queue_size_t& dataSize) : inter
     // 与えられたサイズを上回らない最大の2の冪数を探す
     const uint8_t queueSizeBitLength = sizeof(queue_size_t) * CHAR_BIT;  // キューサイズのビット数
     uint8_t currentBitPosition = queueSizeBitLength;
-    auto candidate = 0;
+    queue_size_t candidate = 0;
     do {
         candidate = static_cast<queue_size_t>(1 << currentBitPosition);
         if ((candidate & dataSize) != 0) {
