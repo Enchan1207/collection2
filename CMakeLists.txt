@@ -28,3 +28,16 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
         add_subdirectory(tests)
     endif()
 endif()
+
+# インストール構成
+
+# configファイル (collection2-config.cmake) を生成
+install(TARGETS collection2
+    EXPORT collection2-config
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+# ヘッダファイルをインストール
+install(DIRECTORY ${collection2_SOURCE_DIR}/include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
