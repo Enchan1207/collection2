@@ -27,7 +27,15 @@ jobs:
 
       - name: Switch git branch to gh-pages and pull if remote exists, then return to master
         run: |
+          set -x
           git checkout --orphan gh-pages
           git rm -rf .
           ls -la
           git fetch origin gh-pages && git pull origin gh-pages || echo "The remote branch gh-pages isn't exist."
+          git add -f docs
+          if [ ! -e .nojekyll ]; then
+              touch .nojekyll
+              git add .nojekyll
+          fi
+          git diff --quiet && git diff --staged --quiet || git commit -am "[Update] documents"
+          git push origin gh-pages
