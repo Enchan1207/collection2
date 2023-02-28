@@ -21,19 +21,24 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
 
-      - name: Generate document using Doxygen
-        uses: mattnotmitt/doxygen-action@v1.9.5
-
-      - name: Switch to orphan branch for deploying to GitHub Pages
+      - name: Switch git branch to gh-pages and pull, then return to master
         run: |
           git checkout --orphan gh-pages
           git reset --hard
           git pull origin gh-pages
+          git switch master
 
-      - name: Commit and push to gh-pages branch
+      - name: Generate document using Doxygen
+        uses: mattnotmitt/doxygen-action@v1.9.5
+
+      - name: Switch git branch to gh-pages, and commit built documentations
         run: |
+          git checkout --orphan gh-pages
+          git reset --hard
           git add -f docs/
-          touch .nojekyll
-          git add .nojekyll
+          if [ ! -e .nojekyll ]; then
+              touch .nojekyll
+              git add .nojekyll
+          fi
           git diff --quiet && git diff --staged --quiet || git commit -am "[Update] documents"
           git push origin gh-pages
