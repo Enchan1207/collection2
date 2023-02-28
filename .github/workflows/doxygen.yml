@@ -18,19 +18,16 @@ jobs:
 
       - name: Git setup
         run: |
-          set -x
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
 
       - name: Generate document using Doxygen
         uses: mattnotmitt/doxygen-action@v1.9.5
 
-      - name: Switch git branch to gh-pages and pull if remote exists, then return to master
+      - name: Switch git branch to gh-pages and pull if remote exists, then commit and push
         run: |
-          set -x
           git checkout --orphan gh-pages
           git rm -rf .
-          ls -la
           git fetch origin gh-pages && git pull origin gh-pages || echo "The remote branch gh-pages isn't exist."
           git add -f docs
           if [ ! -e .nojekyll ]; then
