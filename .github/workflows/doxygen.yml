@@ -35,6 +35,7 @@ jobs:
           fi
           mv docs_/* docs/*
           git add -f docs
+          rm -rf docs_
           if [ ! -e .nojekyll ]; then
               touch .nojekyll
               git add .nojekyll
