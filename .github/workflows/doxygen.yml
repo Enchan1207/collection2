@@ -55,8 +55,8 @@ jobs:
         run: |
           git add docs
           if [ ! -e .nojekyll ]; then
-          touch .nojekyll
-          git add .nojekyll
+            touch .nojekyll
+            git add .nojekyll
           fi
           git diff --quiet && git diff --staged --quiet || git commit -am "[Update] documents"
           git push origin gh-pages
