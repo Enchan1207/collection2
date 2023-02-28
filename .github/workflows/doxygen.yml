@@ -29,14 +29,11 @@ jobs:
           git checkout --orphan gh-pages
           git rm -rf .
           mv docs docs_
-          ls -la docs_
           git fetch origin gh-pages; isexists=$?
           if [ $isexists -ne 128 ]; then
             git pull origin gh-pages
           fi
-          ls -la docs_
-          mv docs_ docs
-          ls -la
+          mv docs_/* docs/*
           git add -f docs
           if [ ! -e .nojekyll ]; then
               touch .nojekyll
