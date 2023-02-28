@@ -16,6 +16,7 @@ html {
         color-scheme: dark;
 
         /* page base colors */
+        --page-background-color: #111;
         --content-background-color: #222;
 
         /** font-family */
