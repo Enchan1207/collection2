@@ -1,0 +1,34 @@
+#
+# Doxygen構成ファイル
+#
+
+# メタ情報
+DOXYFILE_ENCODING = UTF-8
+PROJECT_NAME = "collection2"
+PROJECT_NUMBER = "v0.1.0"
+PROJECT_BRIEF = "Collection of common data structures"
+
+# 入力ソース設定
+MARKDOWN_SUPPORT = YES
+FILE_PATTERNS = *.c *.cpp *.h *.hpp *.dox
+INPUT = doc_sources/mainpage.md include/collection2
+INPUT_ENCODING = UTF-8
+
+# 出力設定
+OUTPUT_DIRECTORY = .
+OUTPUT_LANGUAGE = Japanese-en
+SHOW_INCLUDE_FILES = YES
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
+GENERATE_TREEVIEW = NO
+SORT_MEMBER_DOCS = NO
+
+# HTMLスタイル設定
+HTML_OUTPUT = docs
+HTML_FILE_EXTENSION = .html
+HTML_COLORSTYLE_HUE = 240
+HTML_COLORSTYLE_SAT = 100
+HTML_COLORSTYLE_GAMMA = 80
+HTML_HEADER = doc_sources/header.html
+HTML_FOOTER = doc_sources/footer.html
+HTML_EXTRA_STYLESHEET = doc_sources/style.css
