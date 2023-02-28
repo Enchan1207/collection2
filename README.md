@@ -63,9 +63,7 @@ cmake --install .
 
 ## Usage
 
-Under construction...
-
-Latest document will be published under GitHub Pages after release.
+Latest document is hosted on [GitHub Pages](https://enchan1207.github.io/collection2/).
 
 
 ## License
