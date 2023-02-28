@@ -33,7 +33,7 @@ jobs:
           if [ $isexists -ne 128 ]; then
             git pull origin gh-pages
           fi
-          cp docs/* docs/
+          cp -rf docs_ docs
           git add -f docs
           if [ ! -e .nojekyll ]; then
               touch .nojekyll
