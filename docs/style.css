@@ -1,0 +1,104 @@
+/*
+ * custom styles
+ */
+
+html {
+    /* page base colors */
+    --page-background-color: #F5F5F5;
+    --content-background-color: white;
+
+    /** font-family */
+    --font-family-monospace: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not(.dark-mode) {
+        color-scheme: dark;
+
+        /* page base colors */
+        --content-background-color: #222;
+
+        /** font-family */
+        --font-family-monospace: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+    }
+}
+
+body, table, div, p, dl {
+    font-family: var(--font-family-normal);
+    font-size: unset;
+    line-height: unset;
+}
+
+/* @group Heading Levels */
+
+.title {
+    font-family: var(--font-family-normal);
+    line-height: 28px;
+    font-size: 150%;
+    font-weight: bold;
+    margin: 10px 2px;
+}
+
+div.fragment {
+    padding: 10px;
+    border-radius: 6px;
+    margin: 4px 10px;
+}
+
+div.line {
+    font-size: 14px;
+    min-height: unset;
+    line-height: unset;
+
+    white-space: pre;
+    text-indent: unset;
+    padding-left: unset;
+}
+
+div.contents {
+    margin: auto;
+    padding: 10px;
+    max-width: 1024px;
+    background-color: var(--content-background-color);
+}
+
+code {
+    font-size: 14px;
+}
+
+footer {
+    width: 100%;
+}
+
+footer div {
+    padding: 5px 10px;
+    text-align: right;
+}
+
+div.header {
+    margin: auto;
+    padding: 10px;
+    max-width: 1024px;
+
+    background-image: unset;
+    background-color: var(--content-background-color);
+}
+
+div.headertitle .title {
+    font-size: 1.7em;
+}
+
+#projectname a {
+    color: var(--page-foreground-color);
+    text-decoration: none;
+}
+
+#titlearea {
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+#top {
+    position: sticky;
+    top: 0;
+}
