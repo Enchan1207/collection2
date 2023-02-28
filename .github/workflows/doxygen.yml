@@ -1,0 +1,38 @@
+name: Doxygen
+
+on:
+  workflow_run:
+    workflows:
+      - CMake
+    branches:
+      - master
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Git setup
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Generate document using Doxygen
+        uses: mattnotmitt/doxygen-action@v1.9.4
+
+      - name: Switch to orphan branch for deploying to GitHub Pages
+        run: |
+          git checkout --orphan gh-pages
+          git reset --hard
+
+      - name: Commit and push to gh-pages branch
+        run: |
+          git add -f docs/
+          touch .nojekyll
+          git add .nojekyll
+          git diff --quiet && git diff --staged --quiet || git commit -am "[Update] documents"
+          git push origin gh-pages
