@@ -22,7 +22,7 @@ collection2では以下のデータ構造が提供されます。
 // キューを定義
 const int queueLength = 8;
 int queueData[queueLength] = {0};
-Queue<int> queue(queueData, queueLength);
+collection2::Queue<int> queue(queueData, queueLength);
 
 // 追加
 queue.enqueue(1);
@@ -36,7 +36,7 @@ queue.enqueue(8);
 
 // 範囲外
 auto result = queue.enqueue(9);
-if(result == OperationResult::Overflow){
+if(result == collection2::OperationResult::Overflow){
     std::cerr << "queue overflow" << std::endl;
 }
 
@@ -44,7 +44,7 @@ if(result == OperationResult::Overflow){
 for (int i = 0; i < queueLength; i++) {
     int value = 0;
     auto result = queue.dequeue(&value);
-    if(result != OperationResult::Success){
+    if(result != collection2::OperationResult::Success){
         std::cerr << "An error occurred during dequeue." << std::endl;
         continue;
     }
@@ -70,8 +70,8 @@ std::cout << std::endl;
 データの追加および取り出しは インスタンスメソッド `collection2::Queue::enqueue`, `collection2::Queue::dequeue` により行います。
 
 ```cpp
-OperationResult result = queue.enqueue(123);
-OperationResult result = queue.dequeue(&value);
+collection2::OperationResult result = queue.enqueue(123);
+collection2::OperationResult result = queue.dequeue(&value);
 ```
 
 操作結果は `collection2::OperationResult` により示されます。キューが満杯の場合は `OperationResult::Overflow`, 空の場合は `OperationResult::Empty` が返り、成功時は `OperationResult::Success` が返ります。  
@@ -85,7 +85,7 @@ OperationResult result = queue.dequeue(&value);
 // スタックを定義
 const int stackLength = 5;
 int stackData[stackLength] = {0};
-Stack<int> stack(stackData, stackLength);
+collection2::Stack<int> stack(stackData, stackLength);
 
 // 追加
 stack.enqueue(1);
@@ -96,7 +96,7 @@ stack.enqueue(5);
 
 // 範囲外
 auto result = stack.enqueue(6);
-if(result == OperationResult::Overflow){
+if(result == collection2::OperationResult::Overflow){
     std::cerr << "stack overflow" << std::endl;
 }
 
@@ -104,7 +104,7 @@ if(result == OperationResult::Overflow){
 for (int i = 0; i < stackLength; i++) {
     int value = 0;
     auto result = stack.pop(&value);
-    if(result != OperationResult::Success){
+    if(result != collection2::OperationResult::Success){
         std::cerr << "An error occurred during pop." << std::endl;
         continue;
     }
@@ -132,7 +132,7 @@ std::cout << std::endl;
 // バッファを定義
 const int bufferLength = 4;
 int bufferData[bufferLength] = {0};
-Buffer<int> buffer(bufferData, bufferLength);
+collection2::Buffer<int> buffer(bufferData, bufferLength);
 
 // 追加
 buffer.append(1);
@@ -142,7 +142,7 @@ buffer.append(4);
 
 // バッファサイズを超えて追加することが可能
 auto result = buffer.append(5);
-if(result == OperationResult::Success){
+if(result == collection2::OperationResult::Success){
     std::cerr << "you can add new data to full buffer" << std::endl;
 }
 
@@ -150,7 +150,7 @@ if(result == OperationResult::Success){
 for (int i = 0; i < stackLength; i++) {
     int value = 0;
     auto result = buffer.pop(&value);
-    if(result != OperationResult::Success){
+    if(result != collection2::OperationResult::Success){
         std::cerr << "An error occurred during pop." << std::endl;
         continue;
     }
@@ -176,8 +176,8 @@ std::cout << std::endl;
 ```cpp
 // リストを定義
 const int listLength = 3;
-Node<int> listData[listLength];
-List<int> list(listData, listLength);
+collection2::Node<int> listData[listLength];
+collection2::List<int> list(listData, listLength);
 
 // 末尾に追加
 list.append(123);
