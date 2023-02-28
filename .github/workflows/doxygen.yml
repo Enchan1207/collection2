@@ -25,16 +25,20 @@ jobs:
         uses: mattnotmitt/doxygen-action@v1.9.5
 
       - name: Change permisson of generated document files
-        run: sudo chown -R runner:docker docs
+        run: |
+          sudo chown -R runner:docker docs
 
       - name: Switch git branch to gh-pages and pull if remote exists, then commit and push
         run: |
           git checkout --orphan gh-pages
           git rm -rf .
+          mv docs docs_
           git fetch origin gh-pages; isexists=$?
           if [ $isexists -ne 128 ]; then
             git pull origin gh-pages
           fi
+          cp -rf docs_ docs
+          rm -rf docs_
           git add -f docs
           if [ ! -e .nojekyll ]; then
               touch .nojekyll
