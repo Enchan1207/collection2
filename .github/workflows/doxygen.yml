@@ -28,7 +28,12 @@ jobs:
         run: |
           git checkout --orphan gh-pages
           git rm -rf .
-          git fetch origin gh-pages && git pull origin gh-pages || echo "The remote branch gh-pages isn't exist."
+          mv docs docs_
+          git fetch origin gh-pages; isexists=$?
+          if [ $isexists -ne 128 ]; then
+            git pull origin gh-pages
+          fi
+          mv docs_ docs
           git add -f docs
           if [ ! -e .nojekyll ]; then
               touch .nojekyll
