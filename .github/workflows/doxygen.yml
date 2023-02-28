@@ -47,6 +47,7 @@ jobs:
             git checkout --orphan gh-pages
           fi
           git rm -rf .
+          mkdir -p docs
           cp -rf docs_/* docs
           rm -rf docs_
 
