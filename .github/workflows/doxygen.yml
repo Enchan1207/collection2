@@ -33,7 +33,8 @@ jobs:
           if [ $isexists -ne 128 ]; then
             git pull origin gh-pages
           fi
-          mv docs_/* docs/*
+          ls -la
+          mv docs_ docs
           git add -f docs
           rm -rf docs_
           if [ ! -e .nojekyll ]; then
