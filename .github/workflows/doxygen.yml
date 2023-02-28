@@ -22,7 +22,7 @@ jobs:
           git config user.name "github-actions[bot]"
 
       - name: Generate document using Doxygen
-        uses: mattnotmitt/doxygen-action@v1.9.4
+        uses: mattnotmitt/doxygen-action@v1.9.5
 
       - name: Switch to orphan branch for deploying to GitHub Pages
         run: |
