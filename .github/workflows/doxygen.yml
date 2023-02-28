@@ -51,6 +51,7 @@ jobs:
           rm -rf docs_
 
       - name: Add files for GitHub pages, then commit and push
+        run: |
           git add docs
           if [ ! -e .nojekyll ]; then
           touch .nojekyll
