@@ -68,6 +68,24 @@ class Stack {
     OperationResult pop(Element* const data);
 
     /**
+     * @brief スタックの全体長を返す
+     *
+     * @return buffer_size_t スタック長
+     */
+    stack_size_t capacity() const {
+        return internalDataSize;
+    }
+
+    /**
+     * @brief 現在スタック内にあるデータ数を返す
+     *
+     * @return buffer_size_t スタック内に存在するデータの数
+     */
+    stack_size_t amount() const {
+        return sp;
+    }
+
+    /**
      * @brief スタックに値を追加できるか
      *
      * @return bool

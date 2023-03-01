@@ -22,6 +22,21 @@ TEST(BufferTest, testInstantiate) {
     Buffer<Structure> structBuffer(structBufferData, 8);
 }
 
+TEST(BufferTest, testCapacityAndAmount) {
+    int data[10] = {0};
+    Buffer<int> buffer(data, 10);
+
+    EXPECT_EQ(buffer.capacity(), 8);
+
+    buffer.append(1);
+    buffer.append(2);
+    buffer.append(3);
+    buffer.append(4);
+    buffer.append(5);
+
+    EXPECT_EQ(buffer.amount(), 5);
+}
+
 TEST(BufferTest, testOperateWithOrdinallySize) {
     // int型を扱うバッファを定義
     const int BufferLength = 8;

@@ -68,7 +68,7 @@ class List {
     /**
      * @brief 現在リスト内に存在するデータ数
      */
-    list_size_t amount = 0;
+    list_size_t count = 0;
 
     /**
      * @brief 新しいノードへのポインタを返す
@@ -131,6 +131,24 @@ class List {
      * @note 範囲外のindexを指定した場合はnullptrが返ります。
      */
     Element* get(const list_size_t& index);
+
+    /**
+     * @brief リストの全体長を返す
+     *
+     * @return buffer_size_t リスト長
+     */
+    list_size_t capacity() const {
+        return internalDataSize;
+    }
+
+    /**
+     * @brief 現在リスト内にあるデータ数を返す
+     *
+     * @return buffer_size_t リスト内に存在するデータの数
+     */
+    list_size_t amount() const {
+        return count;
+    }
 };
 
 template <typename Element>
@@ -165,6 +183,7 @@ OperationResult List<Element>::append(const Element& element) {
     if (head == nullptr) {
         head = newNode;
         tail = newNode;
+        count++;
         return OperationResult::Success;
     }
 
@@ -172,6 +191,7 @@ OperationResult List<Element>::append(const Element& element) {
     tail->next = newNode;
     newNode->previous = tail;
     tail = newNode;
+    count++;
 
     return OperationResult::Success;
 }
@@ -189,6 +209,7 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
     if (head == nullptr) {
         head = newNode;
         tail = newNode;
+        count++;
         return OperationResult::Success;
     }
 
@@ -196,6 +217,7 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
     if (index == 0) {
         newNode->next = head;
         head = newNode;
+        count++;
         return OperationResult::Success;
     }
 
@@ -219,6 +241,8 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
 
     newNode->previous = previousNode;
     previousNode->next = newNode;
+
+    count++;
 
     return OperationResult::Success;
 }
@@ -249,6 +273,8 @@ OperationResult List<Element>::pop(Element* const element) {
     targetNode->next = nullptr;
     targetNode->previous = nullptr;
 
+    count--;
+
     return OperationResult::Success;
 }
 
@@ -277,6 +303,8 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
         targetNode->isEnabled = false;
         targetNode->next = nullptr;
         targetNode->previous = nullptr;
+
+        count--;
 
         return OperationResult::Success;
     }
@@ -308,6 +336,8 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
     targetNode->isEnabled = false;
     targetNode->next = nullptr;
     targetNode->previous = nullptr;
+
+    count--;
 
     return OperationResult::Success;
 }
