@@ -137,7 +137,7 @@ class List {
      *
      * @return Element* リスト先頭へのポインタ
      */
-    Element* head() const {
+    Node<Element>* head() const {
         return headPtr;
     }
 
@@ -146,7 +146,7 @@ class List {
      *
      * @return Element* リスト末尾へのポインタ
      */
-    Element* tail() const {
+    Node<Element>* tail() const {
         return tailPtr;
     }
 };

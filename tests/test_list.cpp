@@ -23,6 +23,39 @@ TEST(ListTest, testInstantiate) {
     List<Structure> structBuffer(structListData, 8);
 }
 
+// head, tailから順にアクセス
+TEST(ListTest, testChainAccess) {
+    const int listLength = 10;
+    Node<int> listData[listLength];
+    List<int> list(listData, listLength);
+
+    for (int i = 0; i < listLength; i++) {
+        list.append(i + 1);
+    }
+
+    // 頭からアクセス
+    auto* head = list.head();
+    int expect = 1;
+    EXPECT_TRUE(head != nullptr);
+    while (head != nullptr) {
+        EXPECT_EQ(head->element, expect);
+        expect++;
+        head = head->next;
+    }
+    EXPECT_EQ(expect, listLength + 1);
+
+    // 後ろからアクセス
+    auto* tail = list.tail();
+    expect = listLength;
+    EXPECT_TRUE(tail != nullptr);
+    while (tail != nullptr) {
+        EXPECT_EQ(tail->element, expect);
+        expect--;
+        tail = tail->previous;
+    }
+    EXPECT_EQ(expect, 0);
+}
+
 // インデックス境界
 TEST(ListTest, testBoundaryIndex) {
     const int listLength = 20;
