@@ -58,12 +58,12 @@ class List {
     /**
      * @brief リスト先頭
      */
-    Node<Element>* head = nullptr;
+    Node<Element>* headPtr = nullptr;
 
     /**
      * @brief リスト末尾
      */
-    Node<Element>* tail = nullptr;
+    Node<Element>* tailPtr = nullptr;
 
     /**
      * @brief 現在リスト内に存在するデータ数
@@ -131,6 +131,24 @@ class List {
      * @note 範囲外のindexを指定した場合はnullptrが返ります。
      */
     Element* get(const list_size_t& index);
+
+    /**
+     * @brief リスト先頭へのポインタを取得
+     *
+     * @return Element* リスト先頭へのポインタ
+     */
+    Element* head() const {
+        return headPtr;
+    }
+
+    /**
+     * @brief リスト末尾へのポインタを取得
+     *
+     * @return Element* リスト末尾へのポインタ
+     */
+    Element* tail() const {
+        return tailPtr;
+    }
 };
 
 template <typename Element>
@@ -162,16 +180,16 @@ OperationResult List<Element>::append(const Element& element) {
     newNode->element = element;
 
     // 先頭の値がないならそこにセットして戻る
-    if (head == nullptr) {
-        head = newNode;
-        tail = newNode;
+    if (headPtr == nullptr) {
+        headPtr = newNode;
+        tailPtr = newNode;
         return OperationResult::Success;
     }
 
     // tailに接続
-    tail->next = newNode;
-    newNode->previous = tail;
-    tail = newNode;
+    tailPtr->next = newNode;
+    newNode->previous = tailPtr;
+    tailPtr = newNode;
 
     return OperationResult::Success;
 }
@@ -186,21 +204,21 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
     newNode->element = element;
 
     // 先頭の値がないならそこにセットして戻る
-    if (head == nullptr) {
-        head = newNode;
-        tail = newNode;
+    if (headPtr == nullptr) {
+        headPtr = newNode;
+        tailPtr = newNode;
         return OperationResult::Success;
     }
 
     // 先頭への追加の場合、現在のheadが新しいノードのnextとなる
     if (index == 0) {
-        newNode->next = head;
-        head = newNode;
+        newNode->next = headPtr;
+        headPtr = newNode;
         return OperationResult::Success;
     }
 
     // 先頭から最大index回nextを辿り、追加位置の直前のノードを取得
-    auto* previousNode = head;
+    auto* previousNode = headPtr;
     list_size_t currentIndex = 0;
     while (previousNode->next != nullptr && currentIndex < index - 1) {
         previousNode = previousNode->next;
@@ -210,7 +228,7 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
     // 接続
     if (previousNode->next == nullptr) {
         // 前のノードの次がnull -> リスト終端への追加
-        tail = newNode;
+        tailPtr = newNode;
     } else {
         // 前のノードの次が存在 -> リスト途中への追加
         previousNode->next->previous = newNode;
@@ -225,12 +243,12 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
 
 template <typename Element>
 OperationResult List<Element>::pop(Element* const element) {
-    if (tail == nullptr) {
+    if (tailPtr == nullptr) {
         return OperationResult::Empty;
     }
 
     // 対象ノードはtailから参照できる
-    auto* targetNode = tail;
+    auto* targetNode = tailPtr;
 
     // tailの位置に格納されている情報を渡す
     if (element != nullptr) {
@@ -238,10 +256,10 @@ OperationResult List<Element>::pop(Element* const element) {
     }
 
     // tailを一つ戻す
-    tail = targetNode->previous;
-    if (tail == nullptr) {
+    tailPtr = targetNode->previous;
+    if (tailPtr == nullptr) {
         // tailがnullになった=リストが空になった
-        head = nullptr;
+        headPtr = nullptr;
     }
 
     // ノードを無効化する
@@ -254,18 +272,18 @@ OperationResult List<Element>::pop(Element* const element) {
 
 template <typename Element>
 OperationResult List<Element>::remove(const list_size_t& index, Element* const element) {
-    if (head == nullptr) {
+    if (headPtr == nullptr) {
         return OperationResult::Empty;
     }
 
     // 先頭のノードを削除する場合
     if (index == 0) {
         // 先頭を一つ先にずらす
-        auto* targetNode = head;
-        head = targetNode->next;
-        if (head == nullptr) {
+        auto* targetNode = headPtr;
+        headPtr = targetNode->next;
+        if (headPtr == nullptr) {
             // headがnullになった=リストが空になった
-            tail = nullptr;
+            tailPtr = nullptr;
         }
 
         // ノードに格納されている情報を渡す
@@ -282,7 +300,7 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
     }
 
     // 先頭からindex回、最大で配列の末尾までnextを辿り、削除位置のノードを取得
-    auto* targetNode = head;
+    auto* targetNode = headPtr;
     list_size_t currentIndex = 0;
     while (targetNode->next != nullptr && currentIndex < index) {
         targetNode = targetNode->next;
@@ -297,7 +315,7 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
     // 前後を再接続
     if (targetNode->next == nullptr) {
         // 前のノードの次がnull -> リスト終端の削除
-        tail = targetNode->previous;
+        tailPtr = targetNode->previous;
     } else {
         // 前のノードの次が存在 -> リスト中間の削除
         targetNode->next->previous = targetNode->previous;
@@ -314,12 +332,12 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
 
 template <typename Element>
 Element* List<Element>::get(const list_size_t& index) {
-    if (head == nullptr) {
+    if (headPtr == nullptr) {
         return nullptr;
     }
 
     // 先頭からindex回、最大で配列の末尾までnextを辿る
-    auto* node = head;
+    auto* node = headPtr;
     list_size_t currentIndex = 0;
     while (node->next != nullptr && currentIndex < index) {
         node = node->next;
