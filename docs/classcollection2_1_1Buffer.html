@@ -92,6 +92,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aed71c1798f56391edeed95137560afe3"><td class="memItemLeft" align="right" valign="top">OperationResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Buffer.html#aed71c1798f56391edeed95137560afe3">pop</a> (Element *const data)</td></tr>
 <tr class="memdesc:aed71c1798f56391edeed95137560afe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">バッファの先頭からデータを取り出し  <a href="classcollection2_1_1Buffer.html#aed71c1798f56391edeed95137560afe3">More...</a><br /></td></tr>
 <tr class="separator:aed71c1798f56391edeed95137560afe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4ca7deeaf445cfd5832ae8c0280c7c8"><td class="memItemLeft" align="right" valign="top">buffer_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Buffer.html#af4ca7deeaf445cfd5832ae8c0280c7c8">capacity</a> () const</td></tr>
+<tr class="memdesc:af4ca7deeaf445cfd5832ae8c0280c7c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">バッファの全体長を返す  <a href="classcollection2_1_1Buffer.html#af4ca7deeaf445cfd5832ae8c0280c7c8">More...</a><br /></td></tr>
+<tr class="separator:af4ca7deeaf445cfd5832ae8c0280c7c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99389520a89e008311eaabd6965ea9ae"><td class="memItemLeft" align="right" valign="top">buffer_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Buffer.html#a99389520a89e008311eaabd6965ea9ae">amount</a> () const</td></tr>
+<tr class="memdesc:a99389520a89e008311eaabd6965ea9ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在バッファ内にあるデータ数を返す  <a href="classcollection2_1_1Buffer.html#a99389520a89e008311eaabd6965ea9ae">More...</a><br /></td></tr>
+<tr class="separator:a99389520a89e008311eaabd6965ea9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52054387a35925060c8ee1c7cb592b1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Buffer.html#a52054387a35925060c8ee1c7cb592b1f">hasSpace</a> () const</td></tr>
 <tr class="memdesc:a52054387a35925060c8ee1c7cb592b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">バッファに値を追加できるか  <a href="classcollection2_1_1Buffer.html#a52054387a35925060c8ee1c7cb592b1f">More...</a><br /></td></tr>
 <tr class="separator:a52054387a35925060c8ee1c7cb592b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,6 +211,66 @@ template&lt;typename Element &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>OperationResult 操作結果 </dd></dl>
+
+</div>
+</div>
+<a id="af4ca7deeaf445cfd5832ae8c0280c7c8" name="af4ca7deeaf445cfd5832ae8c0280c7c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4ca7deeaf445cfd5832ae8c0280c7c8">&#9670;&#160;</a></span>capacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">buffer_size_t <a class="el" href="classcollection2_1_1Buffer.html">collection2::Buffer</a>&lt; Element &gt;::capacity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>バッファの全体長を返す </p>
+<dl class="section return"><dt>Returns</dt><dd>buffer_size_t バッファ長 </dd></dl>
+
+</div>
+</div>
+<a id="a99389520a89e008311eaabd6965ea9ae" name="a99389520a89e008311eaabd6965ea9ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99389520a89e008311eaabd6965ea9ae">&#9670;&#160;</a></span>amount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">buffer_size_t <a class="el" href="classcollection2_1_1Buffer.html">collection2::Buffer</a>&lt; Element &gt;::amount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>現在バッファ内にあるデータ数を返す </p>
+<dl class="section return"><dt>Returns</dt><dd>buffer_size_t バッファ内に存在するデータの数 </dd></dl>
 
 </div>
 </div>

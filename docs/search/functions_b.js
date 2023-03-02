@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stack_0',['Stack',['../classcollection2_1_1Stack.html#adc0d557b122de21f4ed00d626bd73dae',1,'collection2::Stack']]]
+  ['remove_0',['remove',['../classcollection2_1_1List.html#ae806e49114c9b3cc5e5a695af68c2150',1,'collection2::List']]]
 ];

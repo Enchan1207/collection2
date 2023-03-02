@@ -101,6 +101,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7e850b976d53ecfbcc00f40c46e1b940"><td class="memItemLeft" align="right" valign="top">Element *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#a7e850b976d53ecfbcc00f40c46e1b940">get</a> (const list_size_t &amp;index)</td></tr>
 <tr class="memdesc:a7e850b976d53ecfbcc00f40c46e1b940"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト内の要素を参照する  <a href="classcollection2_1_1List.html#a7e850b976d53ecfbcc00f40c46e1b940">More...</a><br /></td></tr>
 <tr class="separator:a7e850b976d53ecfbcc00f40c46e1b940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0d08ee3d59cbe8fb92c9fb1d97e9254"><td class="memItemLeft" align="right" valign="top">list_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#ab0d08ee3d59cbe8fb92c9fb1d97e9254">capacity</a> () const</td></tr>
+<tr class="memdesc:ab0d08ee3d59cbe8fb92c9fb1d97e9254"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストの全体長を返す  <a href="classcollection2_1_1List.html#ab0d08ee3d59cbe8fb92c9fb1d97e9254">More...</a><br /></td></tr>
+<tr class="separator:ab0d08ee3d59cbe8fb92c9fb1d97e9254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd8dfa68cc8d287842b86d0270976f7"><td class="memItemLeft" align="right" valign="top">list_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#acdd8dfa68cc8d287842b86d0270976f7">amount</a> () const</td></tr>
+<tr class="memdesc:acdd8dfa68cc8d287842b86d0270976f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在リスト内にあるデータ数を返す  <a href="classcollection2_1_1List.html#acdd8dfa68cc8d287842b86d0270976f7">More...</a><br /></td></tr>
+<tr class="separator:acdd8dfa68cc8d287842b86d0270976f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Element&gt;<br />
@@ -317,6 +323,66 @@ template&lt;typename Element &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Element* 要素へのポインタ</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>範囲外のindexを指定した場合はnullptrが返ります。 </dd></dl>
+
+</div>
+</div>
+<a id="ab0d08ee3d59cbe8fb92c9fb1d97e9254" name="ab0d08ee3d59cbe8fb92c9fb1d97e9254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0d08ee3d59cbe8fb92c9fb1d97e9254">&#9670;&#160;</a></span>capacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list_size_t <a class="el" href="classcollection2_1_1List.html">collection2::List</a>&lt; Element &gt;::capacity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>リストの全体長を返す </p>
+<dl class="section return"><dt>Returns</dt><dd>buffer_size_t リスト長 </dd></dl>
+
+</div>
+</div>
+<a id="acdd8dfa68cc8d287842b86d0270976f7" name="acdd8dfa68cc8d287842b86d0270976f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd8dfa68cc8d287842b86d0270976f7">&#9670;&#160;</a></span>amount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list_size_t <a class="el" href="classcollection2_1_1List.html">collection2::List</a>&lt; Element &gt;::amount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>現在リスト内にあるデータ数を返す </p>
+<dl class="section return"><dt>Returns</dt><dd>buffer_size_t リスト内に存在するデータの数 </dd></dl>
 
 </div>
 </div>

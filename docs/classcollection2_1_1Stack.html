@@ -92,6 +92,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab57ba0eb6aa0537e28793d157e65cec7"><td class="memItemLeft" align="right" valign="top">OperationResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7">pop</a> (Element *const data)</td></tr>
 <tr class="memdesc:ab57ba0eb6aa0537e28793d157e65cec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">スタックからデータを取り出し  <a href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7">More...</a><br /></td></tr>
 <tr class="separator:ab57ba0eb6aa0537e28793d157e65cec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d9941bbcd1e3c559e43e3e2ea7a658d"><td class="memItemLeft" align="right" valign="top">stack_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Stack.html#a4d9941bbcd1e3c559e43e3e2ea7a658d">capacity</a> () const</td></tr>
+<tr class="memdesc:a4d9941bbcd1e3c559e43e3e2ea7a658d"><td class="mdescLeft">&#160;</td><td class="mdescRight">スタックの全体長を返す  <a href="classcollection2_1_1Stack.html#a4d9941bbcd1e3c559e43e3e2ea7a658d">More...</a><br /></td></tr>
+<tr class="separator:a4d9941bbcd1e3c559e43e3e2ea7a658d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affe9e0e3da9d44cb00e069566d6df246"><td class="memItemLeft" align="right" valign="top">stack_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Stack.html#affe9e0e3da9d44cb00e069566d6df246">amount</a> () const</td></tr>
+<tr class="memdesc:affe9e0e3da9d44cb00e069566d6df246"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在スタック内にあるデータ数を返す  <a href="classcollection2_1_1Stack.html#affe9e0e3da9d44cb00e069566d6df246">More...</a><br /></td></tr>
+<tr class="separator:affe9e0e3da9d44cb00e069566d6df246"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9f70e37917f779c11b6d9fa5c1630e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Stack.html#ab9f70e37917f779c11b6d9fa5c1630e1">hasSpace</a> () const</td></tr>
 <tr class="memdesc:ab9f70e37917f779c11b6d9fa5c1630e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">スタックに値を追加できるか  <a href="classcollection2_1_1Stack.html#ab9f70e37917f779c11b6d9fa5c1630e1">More...</a><br /></td></tr>
 <tr class="separator:ab9f70e37917f779c11b6d9fa5c1630e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +210,66 @@ template&lt;typename Element &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>OperationResult 操作結果 </dd></dl>
+
+</div>
+</div>
+<a id="a4d9941bbcd1e3c559e43e3e2ea7a658d" name="a4d9941bbcd1e3c559e43e3e2ea7a658d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d9941bbcd1e3c559e43e3e2ea7a658d">&#9670;&#160;</a></span>capacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">stack_size_t <a class="el" href="classcollection2_1_1Stack.html">collection2::Stack</a>&lt; Element &gt;::capacity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>スタックの全体長を返す </p>
+<dl class="section return"><dt>Returns</dt><dd>buffer_size_t スタック長 </dd></dl>
+
+</div>
+</div>
+<a id="affe9e0e3da9d44cb00e069566d6df246" name="affe9e0e3da9d44cb00e069566d6df246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affe9e0e3da9d44cb00e069566d6df246">&#9670;&#160;</a></span>amount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">stack_size_t <a class="el" href="classcollection2_1_1Stack.html">collection2::Stack</a>&lt; Element &gt;::amount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>現在スタック内にあるデータ数を返す </p>
+<dl class="section return"><dt>Returns</dt><dd>buffer_size_t スタック内に存在するデータの数 </dd></dl>
 
 </div>
 </div>
