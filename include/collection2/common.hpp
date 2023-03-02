@@ -1,3 +1,4 @@
+/** @file */
 //
 // 共通
 //
@@ -11,8 +12,20 @@ namespace collection2 {
  * @brief コレクション操作結果
  */
 enum class OperationResult {
+
+    /**
+     * @brief 成功
+     */
     Success,
+
+    /**
+     * @brief コレクションに値を追加しようとしたが、満杯だった
+     */
     Overflow,
+
+    /**
+     * @brief コレクションから値を取り出そうとしたが、何も格納されていなかった
+     */
     Empty
 };
 
