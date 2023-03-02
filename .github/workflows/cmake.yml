@@ -7,7 +7,7 @@ on:
     branches: ["master"]
 
 jobs:
-  build:
+  unittest:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,8 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake ..
+          cmake .. -DCOLLECTION2_BUILD_TESTS=ON
+
       - name: Build
         working-directory: ${{github.workspace}}/build
         run: cmake --build .
