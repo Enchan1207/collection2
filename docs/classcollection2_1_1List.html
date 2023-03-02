@@ -101,6 +101,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7e850b976d53ecfbcc00f40c46e1b940"><td class="memItemLeft" align="right" valign="top">Element *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#a7e850b976d53ecfbcc00f40c46e1b940">get</a> (const list_size_t &amp;index)</td></tr>
 <tr class="memdesc:a7e850b976d53ecfbcc00f40c46e1b940"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト内の要素を参照する  <a href="classcollection2_1_1List.html#a7e850b976d53ecfbcc00f40c46e1b940">More...</a><br /></td></tr>
 <tr class="separator:a7e850b976d53ecfbcc00f40c46e1b940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3381a19bf48140b4cca24c08f59b52a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcollection2_1_1Node.html">Node</a>&lt; Element &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#a3381a19bf48140b4cca24c08f59b52a8">head</a> () const</td></tr>
+<tr class="memdesc:a3381a19bf48140b4cca24c08f59b52a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト先頭へのポインタを取得  <a href="classcollection2_1_1List.html#a3381a19bf48140b4cca24c08f59b52a8">More...</a><br /></td></tr>
+<tr class="separator:a3381a19bf48140b4cca24c08f59b52a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3335e1d6177748ed3ece4f86bf8c2404"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcollection2_1_1Node.html">Node</a>&lt; Element &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#a3335e1d6177748ed3ece4f86bf8c2404">tail</a> () const</td></tr>
+<tr class="memdesc:a3335e1d6177748ed3ece4f86bf8c2404"><td class="mdescLeft">&#160;</td><td class="mdescRight">リスト末尾へのポインタを取得  <a href="classcollection2_1_1List.html#a3335e1d6177748ed3ece4f86bf8c2404">More...</a><br /></td></tr>
+<tr class="separator:a3335e1d6177748ed3ece4f86bf8c2404"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0d08ee3d59cbe8fb92c9fb1d97e9254"><td class="memItemLeft" align="right" valign="top">list_size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1List.html#ab0d08ee3d59cbe8fb92c9fb1d97e9254">capacity</a> () const</td></tr>
 <tr class="memdesc:ab0d08ee3d59cbe8fb92c9fb1d97e9254"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストの全体長を返す  <a href="classcollection2_1_1List.html#ab0d08ee3d59cbe8fb92c9fb1d97e9254">More...</a><br /></td></tr>
 <tr class="separator:ab0d08ee3d59cbe8fb92c9fb1d97e9254"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -323,6 +329,66 @@ template&lt;typename Element &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Element* 要素へのポインタ</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>範囲外のindexを指定した場合はnullptrが返ります。 </dd></dl>
+
+</div>
+</div>
+<a id="a3381a19bf48140b4cca24c08f59b52a8" name="a3381a19bf48140b4cca24c08f59b52a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3381a19bf48140b4cca24c08f59b52a8">&#9670;&#160;</a></span>head()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcollection2_1_1Node.html">Node</a>&lt; Element &gt; * <a class="el" href="classcollection2_1_1List.html">collection2::List</a>&lt; Element &gt;::head </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>リスト先頭へのポインタを取得 </p>
+<dl class="section return"><dt>Returns</dt><dd>Element* リスト先頭へのポインタ </dd></dl>
+
+</div>
+</div>
+<a id="a3335e1d6177748ed3ece4f86bf8c2404" name="a3335e1d6177748ed3ece4f86bf8c2404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3335e1d6177748ed3ece4f86bf8c2404">&#9670;&#160;</a></span>tail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcollection2_1_1Node.html">Node</a>&lt; Element &gt; * <a class="el" href="classcollection2_1_1List.html">collection2::List</a>&lt; Element &gt;::tail </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>リスト末尾へのポインタを取得 </p>
+<dl class="section return"><dt>Returns</dt><dd>Element* リスト末尾へのポインタ </dd></dl>
 
 </div>
 </div>
