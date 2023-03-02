@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['remove_0',['remove',['../classcollection2_1_1List.html#ae806e49114c9b3cc5e5a695af68c2150',1,'collection2::List']]]
+  ['queue_0',['Queue',['../classcollection2_1_1Queue.html',1,'collection2::Queue&lt; Element &gt;'],['../classcollection2_1_1Queue.html#a8acb68370a27d824490115fa35c10082',1,'collection2::Queue::Queue()']]]
 ];

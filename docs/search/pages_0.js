@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['collection2_0',['collection2',['../index.html',1,'']]]
+  ['api_20reference_0',['API Reference',['../apirefs.html',1,'']]]
 ];
