@@ -6,7 +6,7 @@
 build/
 
 # built documentation (by Doxygen)
-# docs/
+docs/
 
 # Created by https://www.toptal.com/developers/gitignore/api/cmake,c,cpp
 # Edit at https://www.toptal.com/developers/gitignore?templates=cmake,c,cpp
