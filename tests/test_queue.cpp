@@ -22,6 +22,21 @@ TEST(QueueTest, testInstantiate) {
     Queue<Structure> structQueue(structQueueData, 8);
 }
 
+TEST(QueueTest, testCapacityAndAmount) {
+    int data[10] = {0};
+    Queue<int> queue(data, 10);
+
+    EXPECT_EQ(queue.capacity(), 8);
+
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    queue.enqueue(4);
+    queue.enqueue(5);
+
+    EXPECT_EQ(queue.amount(), 5);
+}
+
 TEST(QueueTest, testOperateWithOrdinallySize) {
     // int型を扱う長さ256のキューを定義
     const int queueLength = 256;

@@ -48,7 +48,7 @@ class Buffer {
     /**
      * @brief 現在バッファ内に存在するデータ数
      */
-    buffer_size_t amount = 0;
+    buffer_size_t count = 0;
 
    public:
     /**
@@ -79,12 +79,30 @@ class Buffer {
     OperationResult pop(Element* const data);
 
     /**
+     * @brief バッファの全体長を返す
+     *
+     * @return buffer_size_t バッファ長
+     */
+    buffer_size_t capacity() const {
+        return internalDataSize;
+    }
+
+    /**
+     * @brief 現在バッファ内にあるデータ数を返す
+     *
+     * @return buffer_size_t バッファ内に存在するデータの数
+     */
+    buffer_size_t amount() const {
+        return count;
+    }
+
+    /**
      * @brief バッファに値を追加できるか
      *
      * @return bool
      */
     bool hasSpace() const {
-        return amount < internalDataSize;
+        return count < internalDataSize;
     }
 
     /**
@@ -93,7 +111,7 @@ class Buffer {
      * @return bool
      */
     bool isEmpty() const {
-        return amount == 0;
+        return count == 0;
     }
 };
 
@@ -134,7 +152,7 @@ OperationResult Buffer<Element>::append(const Element& data) {
     *(internalData + tail) = data;
 
     tail = (tail + 1) & (internalDataSize - 1);
-    amount++;
+    count++;
 
     return OperationResult::Success;
 }
@@ -152,7 +170,7 @@ OperationResult Buffer<Element>::pop(Element* const data) {
     }
 
     head = (head + 1) & (internalDataSize - 1);
-    amount--;
+    count--;
 
     return OperationResult::Success;
 }
