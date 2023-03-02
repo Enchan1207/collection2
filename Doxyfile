@@ -10,8 +10,9 @@ PROJECT_BRIEF = "Collection of common data structures"
 
 # 入力ソース設定
 MARKDOWN_SUPPORT = YES
-FILE_PATTERNS = *.c *.cpp *.h *.hpp *.dox
-INPUT = doc_sources/mainpage.md include/collection2
+FILE_PATTERNS = *.c *.cpp *.h *.hpp *.dox *.md
+INPUT = doc_sources include
+RECURSIVE=YES
 INPUT_ENCODING = UTF-8
 
 # 出力設定

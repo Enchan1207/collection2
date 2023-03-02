@@ -3,9 +3,9 @@
   <!-- Navigation index tabs for HTML output -->
   <navindex>
     <tab type="mainpage" visible="yes" title="Home"/>
+    <tab type="user" visible="yes" url="@ref apirefs" title="API References"/>
     <tab type="classlist" visible="yes" title="Classes" intro=""/>
-    <tab type="apirefs" visible="yes" title="API References"/>
-    <tab type="examples" visible="yes" title="" intro=""/>
+    <tab type="user" visible="yes" url="https://github.com/Enchan1207/collection2" title="Source code (GitHub)" intro=""/>
   </navindex>
 
   <!-- Layout definition for a class page -->

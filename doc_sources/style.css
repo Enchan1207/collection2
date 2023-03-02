@@ -6,7 +6,7 @@ html {
     /* page base colors */
     --page-background-color: #F5F5F5;
     --content-background-color: white;
-
+    --fragment-background-color: #f0f0f0;
     /** font-family */
     --font-family-monospace: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
 }
@@ -22,6 +22,10 @@ html {
         /** font-family */
         --font-family-monospace: 'ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
     }
+}
+
+html {
+    scroll-padding-top: 100px;
 }
 
 body, table, div, p, dl {
@@ -56,6 +60,15 @@ div.line {
     padding-left: unset;
 }
 
+div.header {
+    margin: auto;
+    padding: 10px;
+    max-width: 1024px;
+
+    background-image: unset;
+    background-color: var(--content-background-color);
+}
+
 div.contents {
     margin: auto;
     padding: 10px;
@@ -64,29 +77,21 @@ div.contents {
 }
 
 code {
-    border-radius: 2px;
+    border-radius: 3px;
     font-size: 13px;
     font-family: var(--font-family-monospace);
     background: var(--fragment-background-color);
-    padding: 2px;
+    padding: 3px 5px;
 }
 
 footer {
     width: 100%;
+    height: 90px;
 }
 
 footer div {
     padding: 5px 10px;
     text-align: right;
-}
-
-div.header {
-    margin: auto;
-    padding: 10px;
-    max-width: 1024px;
-
-    background-image: unset;
-    background-color: var(--content-background-color);
 }
 
 div.headertitle .title {
@@ -105,9 +110,41 @@ div.headertitle .title {
 
 #top {
     position: sticky;
+    max-height: 120px;
     top: 0;
 }
 
 #nav-path {
     display: none;
+}
+
+div.toc {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    div.toc {
+        float: unset;
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    div.toc {
+        width: 300px;
+        margin: 10px;
+    }
+}
+
+div.toc a {
+    font-size: 12px;
+}
+
+div.toc li.level3 {
+    margin-left: 5px;
+}
+
+.SRPage *, .SRPage .SRStatus {
+    font-size: 10pt;
 }
