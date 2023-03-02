@@ -22,6 +22,22 @@ TEST(StackTest, testInstantiate) {
     Stack<Structure> structStack(structStackData, 8);
 }
 
+// バッファ長
+TEST(StackTest, testCapacityAndAmount) {
+    int data[10] = {0};
+    Stack<int> stack(data, 10);
+
+    EXPECT_EQ(stack.capacity(), 10);
+
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.push(5);
+
+    EXPECT_EQ(stack.amount(), 5);
+}
+
 TEST(StackTest, testOperate) {
     // int型を扱う長さ100のスタックを定義
     const int stackLength = 100;

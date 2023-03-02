@@ -56,6 +56,22 @@ TEST(ListTest, testChainAccess) {
     EXPECT_EQ(expect, 0);
 }
 
+// バッファ長
+TEST(ListTest, testCapacityAndAmount) {
+    Node<int> data[10];
+    List<int> list(data, 10);
+
+    EXPECT_EQ(list.capacity(), 10);
+
+    list.append(1);
+    list.append(2);
+    list.append(3);
+    list.append(4);
+    list.append(5);
+
+    EXPECT_EQ(list.amount(), 5);
+}
+
 // インデックス境界
 TEST(ListTest, testBoundaryIndex) {
     const int listLength = 20;
