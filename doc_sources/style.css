@@ -64,7 +64,11 @@ div.contents {
 }
 
 code {
-    font-size: 14px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: var(--font-family-monospace);
+    background: var(--fragment-background-color);
+    padding: 2px;
 }
 
 footer {
@@ -102,4 +106,8 @@ div.headertitle .title {
 #top {
     position: sticky;
     top: 0;
+}
+
+#nav-path {
+    display: none;
 }
