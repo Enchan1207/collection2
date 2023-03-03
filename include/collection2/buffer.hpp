@@ -60,6 +60,9 @@ class Buffer {
      */
     Buffer(Element* const data, const buffer_size_t& dataSize);
 
+    Buffer(const Buffer&) = delete;
+    Buffer& operator=(const Buffer&) = delete;
+
     ~Buffer() = default;
 
     /**

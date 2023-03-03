@@ -49,6 +49,9 @@ class Stack {
      */
     Stack(Element* const data, const stack_size_t& dataSize);
 
+    Stack(const Stack&) = delete;
+    Stack& operator=(const Stack&) = delete;
+
     ~Stack() = default;
 
     /**
