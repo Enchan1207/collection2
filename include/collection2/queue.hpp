@@ -60,6 +60,9 @@ class Queue {
      */
     Queue(Element* const data, const queue_size_t& dataSize);
 
+    Queue(const Queue&) = delete;
+    Queue& operator=(const Queue&) = delete;
+
     ~Queue() = default;
 
     /**

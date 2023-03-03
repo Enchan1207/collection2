@@ -86,6 +86,9 @@ class List {
      */
     List(Node<Element>* const data, const list_size_t& dataSize);
 
+    List(const List&) = delete;
+    List& operator=(const List&) = delete;
+
     ~List() = default;
 
     /**
@@ -149,7 +152,7 @@ class List {
     Node<Element>* tail() const {
         return tailPtr;
     }
-    
+
     /**
      * @brief リストの全体長を返す
      *
