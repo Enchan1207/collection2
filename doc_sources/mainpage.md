@@ -55,7 +55,7 @@ include(FetchContent)
 FetchContent_Declare(
     collection2
     GIT_REPOSITORY https://github.com/Enchan1207/collection2
-    GIT_TAG v0.2.0
+    GIT_TAG v0.3.0
 )
 FetchContent_MakeAvailable(collection2)
 ```
