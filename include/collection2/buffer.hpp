@@ -5,8 +5,8 @@
 #ifndef _COLLECTION2_BUFFER_H_
 #define _COLLECTION2_BUFFER_H_
 
-#include <climits>
-#include <cstdint>
+#include <limits.h>
+#include <stdint.h>
 
 #include "common.hpp"
 
