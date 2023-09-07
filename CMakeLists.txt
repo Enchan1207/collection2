@@ -1,11 +1,28 @@
 #
 # collection2
 #
+cmake_minimum_required(VERSION 3.0)
+
+#
+# Toolchain configurarion
+#
+set(BUILD_FOR_AVR FALSE)
+option(COLLECTION2_BUILD_FOR_AVR "Build collection2 for AVR microcontroller" OFF)
+if(COLLECTION2_BUILD_FOR_AVR)
+    message(NOTICE "collection2: build for AVR microcontroller")
+    include(FetchContent)
+    FetchContent_Declare(
+        avr_toolchain
+        GIT_REPOSITORY https://github.com/Enchan1207/cmake-avr
+        GIT_TAG v0.2.0
+    )
+    FetchContent_Populate(avr_toolchain)
+    set(CMAKE_TOOLCHAIN_FILE "${avr_toolchain_SOURCE_DIR}/cmake/avr_toolchain.cmake")
+endif()
 
 #
 # project configuration
 #
-cmake_minimum_required(VERSION 3.0)
 project(collection2
     VERSION 0.2.0
     DESCRIPTION "collection of data structures"
@@ -38,5 +55,9 @@ if(COLLECTION2_BUILD_TESTS)
     enable_testing()
     message(NOTICE "collection2: unit testing is enabled")
     
-    add_subdirectory(tests)
+    if(BUILD_FOR_AVR)
+        add_subdirectory(tests_avr)
+    else()
+        add_subdirectory(tests)
+    endif()
 endif()
