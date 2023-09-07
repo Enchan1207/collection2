@@ -101,19 +101,19 @@ TEST(ListTest, testInsertion1) {
 
     // 確認
     int expected[] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
-    for (list_size_t i = 0; i < listLength / 2; i++) {
+    for (int i = 0; i < listLength / 2; i++) {
         const auto* value = list.get(i);
         EXPECT_FALSE(value == nullptr);
         EXPECT_EQ(expected[i], *value);
     }
 
     // 一つ飛ばしで間に挿入
-    for (list_size_t i = 0; i < listLength / 2; i++) {
+    for (int i = 0; i < listLength / 2; i++) {
         EXPECT_EQ(list.insert(expected[i], (i + 1) * 2), OperationResult::Success);
     }
 
     // 連番になっているはず
-    for (list_size_t i = 0; i < listLength; i++) {
+    for (int i = 0; i < listLength; i++) {
         const auto* value = list.get(i);
         EXPECT_FALSE(value == nullptr);
         EXPECT_EQ(i + 1, *value);
@@ -132,7 +132,7 @@ TEST(ListTest, testInsertion2) {
     }
 
     // 連番になっているはず
-    for (list_size_t i = 0; i < listLength; i++) {
+    for (int i = 0; i < listLength; i++) {
         const auto* value = list.get(i);
         EXPECT_FALSE(value == nullptr);
         EXPECT_EQ(i + 1, *value);
@@ -151,7 +151,7 @@ TEST(ListTest, testDeletion1) {
     }
 
     // 削除+取り出し 連番になっているはず
-    for (list_size_t i = 0; i < listLength; i++) {
+    for (int i = 0; i < listLength; i++) {
         auto value = -1;
         EXPECT_EQ(list.pop(&value), OperationResult::Success);
         EXPECT_EQ(i + 1, value);
@@ -170,7 +170,7 @@ TEST(ListTest, testDeletion2) {
     }
 
     // 先頭から削除+取り出し 連番になっているはず
-    for (list_size_t i = 0; i < listLength; i++) {
+    for (int i = 0; i < listLength; i++) {
         auto value = -1;
         EXPECT_EQ(list.remove(0, &value), OperationResult::Success);
         EXPECT_EQ(i + 1, value);

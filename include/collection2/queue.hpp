@@ -5,24 +5,19 @@
 #ifndef _COLLECTION2_QUEUE_H_
 #define _COLLECTION2_QUEUE_H_
 
-#include <limits.h>
-#include <stdint.h>
+#include <stddef.h>
 
 #include "common.hpp"
 
 namespace collection2 {
 
 /**
- * @brief キューサイズを管理する変数の型
- */
-using queue_size_t = uint16_t;
-
-/**
  * @brief キュー
  *
- * @tparam Element 扱う要素の型
+ * @tparam Element
+ * @tparam Size
  */
-template <typename Element>
+template <typename Element, typename Size = size_t>
 class Queue {
    private:
     /**
@@ -33,22 +28,22 @@ class Queue {
     /**
      * @brief 内部データ長さ
      */
-    queue_size_t internalDataSize;
+    Size internalDataSize;
 
     /**
      * @brief キュー先頭
      */
-    queue_size_t head = 0;
+    Size head = 0;
 
     /**
      * @brief キュー末尾
      */
-    queue_size_t tail = 0;
+    Size tail = 0;
 
     /**
      * @brief 現在キュー内に存在するデータ数
      */
-    queue_size_t count = 0;
+    Size count = 0;
 
    public:
     /**
@@ -58,7 +53,7 @@ class Queue {
      * @param dataSize 領域サイズ
      * @note 領域サイズは2の冪乗であるべきです。それ以外の値を指定した場合、2の冪数のうち領域のサイズを下回らない最大のものが選択されます(15 -> 8, 34 -> 32).
      */
-    Queue(Element* const data, const queue_size_t& dataSize);
+    Queue(Element* const data, const Size& dataSize);
 
     Queue(const Queue&) = delete;
     Queue& operator=(const Queue&) = delete;
@@ -86,7 +81,7 @@ class Queue {
      *
      * @return buffer_size_t キュー長
      */
-    queue_size_t capacity() const {
+    Size capacity() const {
         return internalDataSize;
     }
 
@@ -95,7 +90,7 @@ class Queue {
      *
      * @return buffer_size_t キュー内に存在するデータの数
      */
-    queue_size_t amount() const {
+    Size amount() const {
         return count;
     }
 
@@ -118,8 +113,8 @@ class Queue {
     }
 };
 
-template <typename Element>
-Queue<Element>::Queue(Element* const data, const queue_size_t& dataSize) : internalData(data) {
+template <typename Element, typename Size>
+Queue<Element, Size>::Queue(Element* const data, const Size& dataSize) : internalData(data) {
     // ゼロ長のキューなら何もしない
     if (dataSize == 0) {
         internalDataSize = dataSize;
@@ -127,11 +122,11 @@ Queue<Element>::Queue(Element* const data, const queue_size_t& dataSize) : inter
     }
 
     // 与えられたサイズを上回らない最大の2の冪数を探す
-    const uint8_t queueSizeBitLength = sizeof(queue_size_t) * CHAR_BIT;  // キューサイズのビット数
+    const uint8_t queueSizeBitLength = sizeof(Size) * CHAR_BIT;  // キューサイズのビット数
     uint8_t currentBitPosition = queueSizeBitLength;
-    queue_size_t candidate = 0;
+    Size candidate = 0;
     do {
-        candidate = static_cast<queue_size_t>(1 << currentBitPosition);
+        candidate = static_cast<Size>(1 << currentBitPosition);
         if ((candidate & dataSize) != 0) {
             break;
         }
@@ -139,8 +134,8 @@ Queue<Element>::Queue(Element* const data, const queue_size_t& dataSize) : inter
     internalDataSize = candidate;
 };
 
-template <typename Element>
-OperationResult Queue<Element>::enqueue(const Element& data) {
+template <typename Element, typename Size>
+OperationResult Queue<Element, Size>::enqueue(const Element& data) {
     // キューがいっぱいなら戻る
     if (!hasSpace()) {
         return OperationResult::Overflow;
@@ -155,8 +150,8 @@ OperationResult Queue<Element>::enqueue(const Element& data) {
     return OperationResult::Success;
 }
 
-template <typename Element>
-OperationResult Queue<Element>::dequeue(Element* const data) {
+template <typename Element, typename Size>
+OperationResult Queue<Element, Size>::dequeue(Element* const data) {
     // キューが空なら戻る
     if (isEmpty()) {
         return OperationResult::Empty;

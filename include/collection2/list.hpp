@@ -5,8 +5,7 @@
 #ifndef _COLLECTION2_LIST_H_
 #define _COLLECTION2_LIST_H_
 
-#include <limits.h>
-#include <stdint.h>
+#include <stddef.h>
 
 #include "common.hpp"
 
@@ -15,9 +14,10 @@ namespace collection2 {
 /**
  * @brief リストの一要素を表す構造体
  *
- * @tparam Element 扱う要素の型
+ * @tparam Element
+ * @tparam Size
  */
-template <typename Element>
+template <typename Element, typename Size = size_t>
 struct Node {
     // 有効なノードか
     bool isEnabled = false;
@@ -33,16 +33,11 @@ struct Node {
 };
 
 /**
- * @brief リストサイズを管理する変数の型
- */
-using list_size_t = uint16_t;
-
-/**
  * @brief リスト
  *
  * @tparam Element 扱う要素の型
  */
-template <typename Element>
+template <typename Element, typename Size = size_t>
 class List {
    private:
     /**
@@ -53,29 +48,29 @@ class List {
     /**
      * @brief 内部データ長さ
      */
-    list_size_t internalDataSize;
+    Size internalDataSize;
 
     /**
      * @brief リスト先頭
      */
-    Node<Element>* headPtr = nullptr;
+    Node<Element, Size>* headPtr = nullptr;
 
     /**
      * @brief リスト末尾
      */
-    Node<Element>* tailPtr = nullptr;
+    Node<Element, Size>* tailPtr = nullptr;
 
     /**
      * @brief 現在リスト内に存在するデータ数
      */
-    list_size_t count = 0;
+    Size count = 0;
 
     /**
      * @brief 新しいノードへのポインタを返す
      *
      * @return Node<Element>* データを追加できる位置のポインタ。内部データ領域がいっぱいの場合はnullptrが返ります。
      */
-    Node<Element>* getNewNode() const;
+    Node<Element, Size>* getNewNode() const;
 
    public:
     /**
@@ -84,7 +79,7 @@ class List {
      * @param data 内部データ保管用領域
      * @param dataSize 領域サイズ
      */
-    List(Node<Element>* const data, const list_size_t& dataSize);
+    List(Node<Element, Size>* const data, const Size& dataSize);
 
     List(const List&) = delete;
     List& operator=(const List&) = delete;
@@ -106,7 +101,7 @@ class List {
      * @param element 追加するデータ
      * @return OperationResult 操作結果
      */
-    OperationResult insert(const list_size_t& index, const Element& element);
+    OperationResult insert(const Size& index, const Element& element);
 
     /**
      * @brief リスト末尾のデータを削除し、取り出す
@@ -123,7 +118,7 @@ class List {
      * @param element 削除したデータの格納先
      * @return OperationResult 操作結果
      */
-    OperationResult remove(const list_size_t& index, Element* const element);
+    OperationResult remove(const Size& index, Element* const element);
 
     /**
      * @brief リスト内の要素を参照する
@@ -133,7 +128,7 @@ class List {
      *
      * @note 範囲外のindexを指定した場合はnullptrが返ります。
      */
-    Element* get(const list_size_t& index);
+    Element* get(const Size& index);
 
     /**
      * @brief リスト先頭へのポインタを取得
@@ -158,7 +153,7 @@ class List {
      *
      * @return buffer_size_t リスト長
      */
-    list_size_t capacity() const {
+    Size capacity() const {
         return internalDataSize;
     }
 
@@ -167,17 +162,17 @@ class List {
      *
      * @return buffer_size_t リスト内に存在するデータの数
      */
-    list_size_t amount() const {
+    Size amount() const {
         return count;
     }
 };
 
-template <typename Element>
-List<Element>::List(Node<Element>* const data, const list_size_t& dataSize) : internalData(data), internalDataSize(dataSize){};
+template <typename Element, typename Size>
+List<Element, Size>::List(Node<Element, Size>* const data, const Size& dataSize) : internalData(data), internalDataSize(dataSize){};
 
-template <typename Element>
-Node<Element>* List<Element>::getNewNode() const {
-    for (list_size_t i = 0; i < internalDataSize; i++) {
+template <typename Element, typename Size>
+Node<Element, Size>* List<Element, Size>::getNewNode() const {
+    for (Size i = 0; i < internalDataSize; i++) {
         if (internalData[i].isEnabled) {
             continue;
         }
@@ -191,8 +186,8 @@ Node<Element>* List<Element>::getNewNode() const {
     return nullptr;
 }
 
-template <typename Element>
-OperationResult List<Element>::append(const Element& element) {
+template <typename Element, typename Size>
+OperationResult List<Element, Size>::append(const Element& element) {
     // 新しいノードを取得し、値を設定
     auto* newNode = getNewNode();
     if (newNode == nullptr) {
@@ -217,8 +212,8 @@ OperationResult List<Element>::append(const Element& element) {
     return OperationResult::Success;
 }
 
-template <typename Element>
-OperationResult List<Element>::insert(const list_size_t& index, const Element& element) {
+template <typename Element, typename Size>
+OperationResult List<Element, Size>::insert(const Size& index, const Element& element) {
     // 新しいノードを取得し、値を設定
     auto* newNode = getNewNode();
     if (newNode == nullptr) {
@@ -244,7 +239,7 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
 
     // 先頭から最大index回nextを辿り、追加位置の直前のノードを取得
     auto* previousNode = headPtr;
-    list_size_t currentIndex = 0;
+    Size currentIndex = 0;
     while (previousNode->next != nullptr && currentIndex < index - 1) {
         previousNode = previousNode->next;
         currentIndex++;
@@ -268,8 +263,8 @@ OperationResult List<Element>::insert(const list_size_t& index, const Element& e
     return OperationResult::Success;
 }
 
-template <typename Element>
-OperationResult List<Element>::pop(Element* const element) {
+template <typename Element, typename Size>
+OperationResult List<Element, Size>::pop(Element* const element) {
     if (tailPtr == nullptr) {
         return OperationResult::Empty;
     }
@@ -299,8 +294,8 @@ OperationResult List<Element>::pop(Element* const element) {
     return OperationResult::Success;
 }
 
-template <typename Element>
-OperationResult List<Element>::remove(const list_size_t& index, Element* const element) {
+template <typename Element, typename Size>
+OperationResult List<Element, Size>::remove(const Size& index, Element* const element) {
     if (headPtr == nullptr) {
         return OperationResult::Empty;
     }
@@ -332,7 +327,7 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
 
     // 先頭からindex回、最大で配列の末尾までnextを辿り、削除位置のノードを取得
     auto* targetNode = headPtr;
-    list_size_t currentIndex = 0;
+    Size currentIndex = 0;
     while (targetNode->next != nullptr && currentIndex < index) {
         targetNode = targetNode->next;
         currentIndex++;
@@ -363,15 +358,15 @@ OperationResult List<Element>::remove(const list_size_t& index, Element* const e
     return OperationResult::Success;
 }
 
-template <typename Element>
-Element* List<Element>::get(const list_size_t& index) {
+template <typename Element, typename Size>
+Element* List<Element, Size>::get(const Size& index) {
     if (headPtr == nullptr) {
         return nullptr;
     }
 
     // 先頭からindex回、最大で配列の末尾までnextを辿る
     auto* node = headPtr;
-    list_size_t currentIndex = 0;
+    Size currentIndex = 0;
     while (node->next != nullptr && currentIndex < index) {
         node = node->next;
         currentIndex++;

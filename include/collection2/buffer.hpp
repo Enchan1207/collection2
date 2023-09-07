@@ -14,8 +14,8 @@ namespace collection2 {
 /**
  * @brief リングバッファ
  *
- * @tparam Element 扱う要素の型
- * @tparam Size バッファサイズを扱う型
+ * @tparam Element
+ * @tparam Size
  */
 template <typename Element, typename Size = size_t>
 class Buffer {
