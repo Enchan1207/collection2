@@ -37,6 +37,8 @@ if(COLLECTION2_BUILD_TESTS)
     enable_testing()
     message(NOTICE "collection2: unit testing is enabled")
     
+    # If you use collection2 on AVR microcontroller
+    # using Enchan1207/cmake-avr, tests_avr will be added instead of tests.
     if(DEFINED BUILD_FOR_AVR AND BUILD_FOR_AVR)
         add_subdirectory(tests_avr)
     else()
