@@ -122,16 +122,12 @@ Queue<Element, Size>::Queue(Element* const data, const Size& dataSize) : interna
     }
 
     // 与えられたサイズを上回らない最大の2の冪数を探す
-    const uint8_t queueSizeBitLength = sizeof(Size) * CHAR_BIT;  // キューサイズのビット数
-    uint8_t currentBitPosition = queueSizeBitLength;
-    Size candidate = 0;
-    do {
-        candidate = static_cast<Size>(1 << currentBitPosition);
-        if ((candidate & dataSize) != 0) {
-            break;
-        }
-    } while (currentBitPosition--);
-    internalDataSize = candidate;
+    unsigned char maxbitPos = 0;
+    Size size = dataSize;
+    while ((size >>= 1) != 0) {
+        maxbitPos++;
+    }
+    internalDataSize = 1 << maxbitPos;
 };
 
 template <typename Element, typename Size>
