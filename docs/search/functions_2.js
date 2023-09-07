@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['capacity_0',['capacity',['../classcollection2_1_1Buffer.html#af4ca7deeaf445cfd5832ae8c0280c7c8',1,'collection2::Buffer::capacity()'],['../classcollection2_1_1List.html#ab0d08ee3d59cbe8fb92c9fb1d97e9254',1,'collection2::List::capacity()'],['../classcollection2_1_1Queue.html#ad107cd8b6b94019ef60aebb327896567',1,'collection2::Queue::capacity()'],['../classcollection2_1_1Stack.html#a4d9941bbcd1e3c559e43e3e2ea7a658d',1,'collection2::Stack::capacity()']]]
+  ['capacity_0',['capacity',['../classcollection2_1_1Buffer.html#a8fc13f1e81ab432d656ee2a18eacd4e6',1,'collection2::Buffer::capacity()'],['../classcollection2_1_1List.html#af4c4a17f4b39de8dcdba86a9b585897b',1,'collection2::List::capacity()'],['../classcollection2_1_1Queue.html#ae50e64d8661de02bb728fca40350fa8d',1,'collection2::Queue::capacity()'],['../classcollection2_1_1Stack.html#a30d1d7934fdf9648ecbf9dba4167341f',1,'collection2::Stack::capacity()']]]
 ];

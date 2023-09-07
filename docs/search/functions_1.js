@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['buffer_0',['Buffer',['../classcollection2_1_1Buffer.html#ac962ec566dd852938608014f9c4fe47b',1,'collection2::Buffer']]]
+  ['buffer_0',['Buffer',['../classcollection2_1_1Buffer.html#a84ccb302b287670f0d77d0ab9606cdad',1,'collection2::Buffer']]]
 ];

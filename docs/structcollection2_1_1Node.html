@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11" />
     <meta name="generator" content="Doxygen 1.9.5" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>collection2: collection2::Node&lt; Element &gt; Struct Template Reference</title>
+    <title>collection2: collection2::Node&lt; Element, Size &gt; Struct Template Reference</title>
     <link href="tabs.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structcollection2_1_1Node-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">collection2::Node&lt; Element &gt; Struct Template Reference</div></div>
+  <div class="headertitle"><div class="title">collection2::Node&lt; Element, Size &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -83,25 +83,26 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5682ec8f048eac56c3ba4f38e25609eb"><td class="memItemLeft" align="right" valign="top"><a id="a5682ec8f048eac56c3ba4f38e25609eb" name="a5682ec8f048eac56c3ba4f38e25609eb"></a>
+<tr class="memitem:acce1668c8726b0fb88dfc8169b7e1052"><td class="memItemLeft" align="right" valign="top"><a id="acce1668c8726b0fb88dfc8169b7e1052" name="acce1668c8726b0fb88dfc8169b7e1052"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEnabled</b> = false</td></tr>
-<tr class="separator:a5682ec8f048eac56c3ba4f38e25609eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2361dea002323d51f6817d13cbf5e1c"><td class="memItemLeft" align="right" valign="top"><a id="ad2361dea002323d51f6817d13cbf5e1c" name="ad2361dea002323d51f6817d13cbf5e1c"></a>
+<tr class="separator:acce1668c8726b0fb88dfc8169b7e1052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6afdc4b2398f0e07a8e3550d7bdc233e"><td class="memItemLeft" align="right" valign="top"><a id="a6afdc4b2398f0e07a8e3550d7bdc233e" name="a6afdc4b2398f0e07a8e3550d7bdc233e"></a>
 <a class="el" href="structcollection2_1_1Node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>next</b> = nullptr</td></tr>
-<tr class="separator:ad2361dea002323d51f6817d13cbf5e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcf831e85fd1bedfe08a8b1750337359"><td class="memItemLeft" align="right" valign="top"><a id="adcf831e85fd1bedfe08a8b1750337359" name="adcf831e85fd1bedfe08a8b1750337359"></a>
+<tr class="separator:a6afdc4b2398f0e07a8e3550d7bdc233e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51a9e1a54596d414e2827ac63ac11a30"><td class="memItemLeft" align="right" valign="top"><a id="a51a9e1a54596d414e2827ac63ac11a30" name="a51a9e1a54596d414e2827ac63ac11a30"></a>
 <a class="el" href="structcollection2_1_1Node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>previous</b> = nullptr</td></tr>
-<tr class="separator:adcf831e85fd1bedfe08a8b1750337359"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a2377aee88092317fc51fe176dc9d56"><td class="memItemLeft" align="right" valign="top"><a id="a0a2377aee88092317fc51fe176dc9d56" name="a0a2377aee88092317fc51fe176dc9d56"></a>
+<tr class="separator:a51a9e1a54596d414e2827ac63ac11a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ebb756538e1f6a8d26a9369e6d8dd8d"><td class="memItemLeft" align="right" valign="top"><a id="a1ebb756538e1f6a8d26a9369e6d8dd8d" name="a1ebb756538e1f6a8d26a9369e6d8dd8d"></a>
 Element&#160;</td><td class="memItemRight" valign="bottom"><b>element</b></td></tr>
-<tr class="separator:a0a2377aee88092317fc51fe176dc9d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a1ebb756538e1f6a8d26a9369e6d8dd8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Element&gt;<br />
-struct collection2::Node&lt; Element &gt;</div><p >リストの一要素を表す構造体 </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Element, typename Size = size_t&gt;<br />
+struct collection2::Node&lt; Element, Size &gt;</div><p >リストの一要素を表す構造体 </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Element</td><td>扱う要素の型 </td></tr>
+    <tr><td class="paramname">Element</td><td></td></tr>
+    <tr><td class="paramname">Size</td><td></td></tr>
   </table>
   </dd>
 </dl>

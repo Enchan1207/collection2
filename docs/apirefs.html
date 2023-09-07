@@ -113,14 +113,14 @@ Queue</h1>
 <div class="line">    std::cout &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
 <div class="line">}</div>
 <div class="line">std::cout &lt;&lt; std::endl;</div>
-<div class="ttc" id="aclasscollection2_1_1Queue_html"><div class="ttname"><a href="classcollection2_1_1Queue.html">collection2::Queue</a></div><div class="ttdoc">キュー</div><div class="ttdef"><b>Definition:</b> queue.hpp:26</div></div>
+<div class="ttc" id="aclasscollection2_1_1Queue_html"><div class="ttname"><a href="classcollection2_1_1Queue.html">collection2::Queue</a></div><div class="ttdoc">キュー</div><div class="ttdef"><b>Definition:</b> queue.hpp:21</div></div>
 </div><!-- fragment --><p >実行結果:</p>
 <div class="fragment"><div class="line">1,2,3,4,5,6,7,8,</div>
 </div><!-- fragment --><p >このサンプルコードでは、まず長さ8のキューを定義し、数値をキューに追加します。次に先頭から順に値を取り出し、標準出力に書き出します。</p>
-<p >コンストラクタ <code><a class="el" href="classcollection2_1_1Queue.html#a8acb68370a27d824490115fa35c10082" title="内部データを扱う領域とそのサイズを指定してキューを初期化">collection2::Queue::Queue</a></code> の第一引数にはキューが自由に使えるメモリ上の領域、第二引数にはその大きさを指定します。 データ領域の大きさは(<code>queue_size_t = uint16_t</code>の範囲内であれば)どのような値でも構いませんが、内部的に使用されるのはその数を上回らない最大の2の冪数となります。 <br  />
+<p >コンストラクタ <code><a class="el" href="classcollection2_1_1Queue.html#a15415e1fc53d71a63ff2febd75f953c0" title="内部データを扱う領域とそのサイズを指定してキューを初期化">collection2::Queue::Queue</a></code> の第一引数にはキューが自由に使えるメモリ上の領域、第二引数にはその大きさを指定します。 データ領域の大きさは(<code>queue_size_t = uint16_t</code>の範囲内であれば)どのような値でも構いませんが、内部的に使用されるのはその数を上回らない最大の2の冪数となります。 <br  />
  (例: 長さ15の領域であれば8個、長さ16の領域であれば16個、長さ17の領域であれば16個) <br  />
  メモリ効率の観点から、キューに渡すデータ領域のサイズはなるべく2の冪数に合わせる方がよいでしょう。 なお、この制限はバッファ (<code><a class="el" href="classcollection2_1_1Buffer.html" title="リングバッファ">collection2::Buffer</a></code>) についても適用されます。</p>
-<p >データの追加および取り出しは インスタンスメソッド <code><a class="el" href="classcollection2_1_1Queue.html#ac97a29e9e8b79d6acbe714765fee8360" title="キューにデータを追加">collection2::Queue::enqueue</a></code>, <code><a class="el" href="classcollection2_1_1Queue.html#a818ea4db2ef5f451bde893bc2cb48b11" title="キューからデータを取り出し">collection2::Queue::dequeue</a></code> により行います。</p>
+<p >データの追加および取り出しは インスタンスメソッド <code><a class="el" href="classcollection2_1_1Queue.html#a4e4e3b6e22403189803d51a2f4d39e45" title="キューにデータを追加">collection2::Queue::enqueue</a></code>, <code><a class="el" href="classcollection2_1_1Queue.html#aa864f9b65c9c0e9d0e0d1dbbe9eae90c" title="キューからデータを取り出し">collection2::Queue::dequeue</a></code> により行います。</p>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">collection2::OperationResult</a> result = queue.enqueue(123);</div>
 <div class="line"><a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">collection2::OperationResult</a> result = queue.dequeue(&amp;value);</div>
 <div class="ttc" id="acommon_8hpp_html_a8f111c87182b0df98cc94dbf5881d538"><div class="ttname"><a href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">collection2::OperationResult</a></div><div class="ttdeci">OperationResult</div><div class="ttdoc">コレクション操作結果</div><div class="ttdef"><b>Definition:</b> common.hpp:14</div></div>
@@ -157,12 +157,12 @@ Stack</h1>
 <div class="line">    std::cout &lt;&lt; value &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
 <div class="line">}</div>
 <div class="line">std::cout &lt;&lt; std::endl;</div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html"><div class="ttname"><a href="classcollection2_1_1Stack.html">collection2::Stack</a></div><div class="ttdoc">スタック</div><div class="ttdef"><b>Definition:</b> stack.hpp:26</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html"><div class="ttname"><a href="classcollection2_1_1Stack.html">collection2::Stack</a></div><div class="ttdoc">スタック</div><div class="ttdef"><b>Definition:</b> stack.hpp:21</div></div>
 </div><!-- fragment --><p >実行結果:</p>
 <div class="fragment"><div class="line">5,4,3,2,1,</div>
 </div><!-- fragment --><p >このサンプルコードでは、まず長さ5のスタックを定義し、数値を追加します。次に最後に追加した順に値を取り出し、標準出力に書き出します。</p>
 <p >スタックにはキューのようなサイズ制限はありません。コンストラクタ第二引数で指定された数の要素すべてをスタック領域として使用します。 <br  />
- データの追加・取り出しには <code><a class="el" href="classcollection2_1_1Stack.html#a1a5e78b1d1737b616415a9627b49fe97" title="スタックにデータを追加">collection2::Stack::push</a></code>、<code><a class="el" href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7" title="スタックからデータを取り出し">collection2::Stack::pop</a></code> を使用します。</p>
+ データの追加・取り出しには <code><a class="el" href="classcollection2_1_1Stack.html#a502c45610d6c75088fd977eeda81035d" title="スタックにデータを追加">collection2::Stack::push</a></code>、<code><a class="el" href="classcollection2_1_1Stack.html#a72126ff853ee64a18dd18af55c5dc065" title="スタックからデータを取り出し">collection2::Stack::pop</a></code> を使用します。</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Buffer</h1>
 <p >リングバッファ(<code><a class="el" href="classcollection2_1_1Buffer.html" title="リングバッファ">collection2::Buffer</a></code>)は、データの一時的な記憶に用いるバッファの先頭と末尾をつなげることで 限られたメモリ空間内で柔軟にデータの追加・削除を行えるようにしたデータ構造です。</p>
@@ -195,7 +195,7 @@ Buffer</h1>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; std::endl;</div>
-<div class="ttc" id="aclasscollection2_1_1Buffer_html"><div class="ttname"><a href="classcollection2_1_1Buffer.html">collection2::Buffer</a></div><div class="ttdoc">リングバッファ</div><div class="ttdef"><b>Definition:</b> buffer.hpp:26</div></div>
+<div class="ttc" id="aclasscollection2_1_1Buffer_html"><div class="ttname"><a href="classcollection2_1_1Buffer.html">collection2::Buffer</a></div><div class="ttdoc">リングバッファ</div><div class="ttdef"><b>Definition:</b> buffer.hpp:21</div></div>
 </div><!-- fragment --><p >実行結果:</p>
 <div class="fragment"><div class="line">2,3,4,5,</div>
 </div><!-- fragment --><p >このサンプルコードでは、まず長さ4のバッファを定義し、4つのデータを挿入します。その後、いっぱいになったバッファにさらに5つ目のデータを挿入し、最後にバッファの先頭から値を取り出します。 <br  />
@@ -226,7 +226,7 @@ List</h1>
 <div class="line">value = 0;</div>
 <div class="line">list.pop(&amp;value);</div>
 <div class="line">std::cout &lt;&lt; value &lt;&lt; std::endl;</div>
-<div class="ttc" id="aclasscollection2_1_1List_html"><div class="ttname"><a href="classcollection2_1_1List.html">collection2::List</a></div><div class="ttdoc">リスト</div><div class="ttdef"><b>Definition:</b> list.hpp:46</div></div>
+<div class="ttc" id="aclasscollection2_1_1List_html"><div class="ttname"><a href="classcollection2_1_1List.html">collection2::List</a></div><div class="ttdoc">リスト</div><div class="ttdef"><b>Definition:</b> list.hpp:41</div></div>
 <div class="ttc" id="astructcollection2_1_1Node_html"><div class="ttname"><a href="structcollection2_1_1Node.html">collection2::Node</a></div><div class="ttdoc">リストの一要素を表す構造体</div><div class="ttdef"><b>Definition:</b> list.hpp:21</div></div>
 </div><!-- fragment --><p >実行結果:</p>
 <div class="fragment"><div class="line">456</div>

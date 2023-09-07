@@ -79,94 +79,91 @@ $(function() {
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef _COLLECTION2_STACK_H_</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define _COLLECTION2_STACK_H_</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;limits.h&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">common.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>collection2 {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">using </span>stack_size_t = uint16_t;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element&gt;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a> {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>   <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    Element* <span class="keyword">const</span> internalData;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">common.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>collection2 {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element, <span class="keyword">typename</span> Size = <span class="keywordtype">size_t</span>&gt;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    Element* <span class="keyword">const</span> internalData;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    Size internalDataSize;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    stack_size_t internalDataSize;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    Size sp = 0;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    stack_size_t sp = 0;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>   <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>(Element* <span class="keyword">const</span> data, <span class="keyword">const</span> stack_size_t&amp; dataSize);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>(Element* <span class="keyword">const</span> data, <span class="keyword">const</span> Size&amp; dataSize);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>(<span class="keyword">const</span> <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">~Stack</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>(<span class="keyword">const</span> <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classcollection2_1_1Stack.html">Stack</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="classcollection2_1_1Stack.html">~Stack</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#a1a5e78b1d1737b616415a9627b49fe97">push</a>(<span class="keyword">const</span> Element&amp; data);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7">pop</a>(Element* <span class="keyword">const</span> data);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a4d9941bbcd1e3c559e43e3e2ea7a658d">   78</a></span>    stack_size_t <a class="code hl_function" href="classcollection2_1_1Stack.html#a4d9941bbcd1e3c559e43e3e2ea7a658d">capacity</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> internalDataSize;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#affe9e0e3da9d44cb00e069566d6df246">   87</a></span>    stack_size_t <a class="code hl_function" href="classcollection2_1_1Stack.html#affe9e0e3da9d44cb00e069566d6df246">amount</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">return</span> sp;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#ab9f70e37917f779c11b6d9fa5c1630e1">   96</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcollection2_1_1Stack.html#ab9f70e37917f779c11b6d9fa5c1630e1">hasSpace</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">return</span> sp &lt; internalDataSize;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#aceaa68532c4edd852ae35310c73cef95">  105</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcollection2_1_1Stack.html#aceaa68532c4edd852ae35310c73cef95">isEmpty</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> sp == 0;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element&gt;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#adc0d557b122de21f4ed00d626bd73dae">  111</a></span><a class="code hl_function" href="classcollection2_1_1Stack.html#adc0d557b122de21f4ed00d626bd73dae">Stack&lt;Element&gt;::Stack</a>(Element* <span class="keyword">const</span> data, <span class="keyword">const</span> stack_size_t&amp; dataSize) : internalData(data), internalDataSize(dataSize){};</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element&gt;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a1a5e78b1d1737b616415a9627b49fe97">  114</a></span><a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#a1a5e78b1d1737b616415a9627b49fe97">Stack&lt;Element&gt;::push</a>(<span class="keyword">const</span> Element&amp; data) {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// スタックがいっぱいなら戻る</span></div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">if</span> (!hasSpace()) {</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">return</span> OperationResult::Overflow;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// spの位置にデータを書き込んで進める</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    *(internalData + sp) = data;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    sp++;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> OperationResult::Success;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element&gt;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7">  128</a></span><a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7">Stack&lt;Element&gt;::pop</a>(Element* <span class="keyword">const</span> data) {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// スタックが空なら戻る</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">if</span> (isEmpty()) {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">return</span> OperationResult::Empty;</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// spを減らしてデータを読み出す</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    sp--;</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    *data = *(internalData + sp);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">return</span> OperationResult::Success;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}  <span class="comment">// namespace collection2</span></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html"><div class="ttname"><a href="classcollection2_1_1Stack.html">collection2::Stack</a></div><div class="ttdoc">スタック</div><div class="ttdef"><b>Definition:</b> stack.hpp:26</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_a1a5e78b1d1737b616415a9627b49fe97"><div class="ttname"><a href="classcollection2_1_1Stack.html#a1a5e78b1d1737b616415a9627b49fe97">collection2::Stack::push</a></div><div class="ttdeci">OperationResult push(const Element &amp;data)</div><div class="ttdoc">スタックにデータを追加</div><div class="ttdef"><b>Definition:</b> stack.hpp:114</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_a4d9941bbcd1e3c559e43e3e2ea7a658d"><div class="ttname"><a href="classcollection2_1_1Stack.html#a4d9941bbcd1e3c559e43e3e2ea7a658d">collection2::Stack::capacity</a></div><div class="ttdeci">stack_size_t capacity() const</div><div class="ttdoc">スタックの全体長を返す</div><div class="ttdef"><b>Definition:</b> stack.hpp:78</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_ab57ba0eb6aa0537e28793d157e65cec7"><div class="ttname"><a href="classcollection2_1_1Stack.html#ab57ba0eb6aa0537e28793d157e65cec7">collection2::Stack::pop</a></div><div class="ttdeci">OperationResult pop(Element *const data)</div><div class="ttdoc">スタックからデータを取り出し</div><div class="ttdef"><b>Definition:</b> stack.hpp:128</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_ab9f70e37917f779c11b6d9fa5c1630e1"><div class="ttname"><a href="classcollection2_1_1Stack.html#ab9f70e37917f779c11b6d9fa5c1630e1">collection2::Stack::hasSpace</a></div><div class="ttdeci">bool hasSpace() const</div><div class="ttdoc">スタックに値を追加できるか</div><div class="ttdef"><b>Definition:</b> stack.hpp:96</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_aceaa68532c4edd852ae35310c73cef95"><div class="ttname"><a href="classcollection2_1_1Stack.html#aceaa68532c4edd852ae35310c73cef95">collection2::Stack::isEmpty</a></div><div class="ttdeci">bool isEmpty() const</div><div class="ttdoc">スタックが空かどうか</div><div class="ttdef"><b>Definition:</b> stack.hpp:105</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_adc0d557b122de21f4ed00d626bd73dae"><div class="ttname"><a href="classcollection2_1_1Stack.html#adc0d557b122de21f4ed00d626bd73dae">collection2::Stack::Stack</a></div><div class="ttdeci">Stack(Element *const data, const stack_size_t &amp;dataSize)</div><div class="ttdoc">内部データを扱う領域とそのサイズを指定してスタックを初期化</div><div class="ttdef"><b>Definition:</b> stack.hpp:111</div></div>
-<div class="ttc" id="aclasscollection2_1_1Stack_html_affe9e0e3da9d44cb00e069566d6df246"><div class="ttname"><a href="classcollection2_1_1Stack.html#affe9e0e3da9d44cb00e069566d6df246">collection2::Stack::amount</a></div><div class="ttdeci">stack_size_t amount() const</div><div class="ttdoc">現在スタック内にあるデータ数を返す</div><div class="ttdef"><b>Definition:</b> stack.hpp:87</div></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#a502c45610d6c75088fd977eeda81035d">push</a>(<span class="keyword">const</span> Element&amp; data);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#a72126ff853ee64a18dd18af55c5dc065">pop</a>(Element* <span class="keyword">const</span> data);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a30d1d7934fdf9648ecbf9dba4167341f">   73</a></span>    Size <a class="code hl_function" href="classcollection2_1_1Stack.html#a30d1d7934fdf9648ecbf9dba4167341f">capacity</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">return</span> internalDataSize;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#ae9f0c0512dc638ed8a0c7c6f0bd12623">   82</a></span>    Size <a class="code hl_function" href="classcollection2_1_1Stack.html#ae9f0c0512dc638ed8a0c7c6f0bd12623">amount</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> sp;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#af3d99abd43c9b9d1fdb2a85af5c23c52">   91</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcollection2_1_1Stack.html#af3d99abd43c9b9d1fdb2a85af5c23c52">hasSpace</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> sp &lt; internalDataSize;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a5b22e73abdde8425d69181786eb7a76b">  100</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classcollection2_1_1Stack.html#a5b22e73abdde8425d69181786eb7a76b">isEmpty</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> sp == 0;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>};</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element, <span class="keyword">typename</span> Size&gt;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a477d6a98e7857f476bad036de7814afd">  106</a></span><a class="code hl_function" href="classcollection2_1_1Stack.html#a477d6a98e7857f476bad036de7814afd">Stack&lt;Element, Size&gt;::Stack</a>(Element* <span class="keyword">const</span> data, <span class="keyword">const</span> Size&amp; dataSize) : internalData(data), internalDataSize(dataSize){};</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element, <span class="keyword">typename</span> Size&gt;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a502c45610d6c75088fd977eeda81035d">  109</a></span><a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#a502c45610d6c75088fd977eeda81035d">Stack&lt;Element, Size&gt;::push</a>(<span class="keyword">const</span> Element&amp; data) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// スタックがいっぱいなら戻る</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">if</span> (!hasSpace()) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">return</span> OperationResult::Overflow;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// spの位置にデータを書き込んで進める</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    *(internalData + sp) = data;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    sp++;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> OperationResult::Success;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element, <span class="keyword">typename</span> Size&gt;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classcollection2_1_1Stack.html#a72126ff853ee64a18dd18af55c5dc065">  123</a></span><a class="code hl_enumeration" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="code hl_function" href="classcollection2_1_1Stack.html#a72126ff853ee64a18dd18af55c5dc065">Stack&lt;Element, Size&gt;::pop</a>(Element* <span class="keyword">const</span> data) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// スタックが空なら戻る</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">if</span> (isEmpty()) {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">return</span> OperationResult::Empty;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// spを減らしてデータを読み出す</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    sp--;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    *data = *(internalData + sp);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">return</span> OperationResult::Success;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>}</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}  <span class="comment">// namespace collection2</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html"><div class="ttname"><a href="classcollection2_1_1Stack.html">collection2::Stack</a></div><div class="ttdoc">スタック</div><div class="ttdef"><b>Definition:</b> stack.hpp:21</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_a30d1d7934fdf9648ecbf9dba4167341f"><div class="ttname"><a href="classcollection2_1_1Stack.html#a30d1d7934fdf9648ecbf9dba4167341f">collection2::Stack::capacity</a></div><div class="ttdeci">Size capacity() const</div><div class="ttdoc">スタックの全体長を返す</div><div class="ttdef"><b>Definition:</b> stack.hpp:73</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_a477d6a98e7857f476bad036de7814afd"><div class="ttname"><a href="classcollection2_1_1Stack.html#a477d6a98e7857f476bad036de7814afd">collection2::Stack::Stack</a></div><div class="ttdeci">Stack(Element *const data, const Size &amp;dataSize)</div><div class="ttdoc">内部データを扱う領域とそのサイズを指定してスタックを初期化</div><div class="ttdef"><b>Definition:</b> stack.hpp:106</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_a502c45610d6c75088fd977eeda81035d"><div class="ttname"><a href="classcollection2_1_1Stack.html#a502c45610d6c75088fd977eeda81035d">collection2::Stack::push</a></div><div class="ttdeci">OperationResult push(const Element &amp;data)</div><div class="ttdoc">スタックにデータを追加</div><div class="ttdef"><b>Definition:</b> stack.hpp:109</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_a5b22e73abdde8425d69181786eb7a76b"><div class="ttname"><a href="classcollection2_1_1Stack.html#a5b22e73abdde8425d69181786eb7a76b">collection2::Stack::isEmpty</a></div><div class="ttdeci">bool isEmpty() const</div><div class="ttdoc">スタックが空かどうか</div><div class="ttdef"><b>Definition:</b> stack.hpp:100</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_a72126ff853ee64a18dd18af55c5dc065"><div class="ttname"><a href="classcollection2_1_1Stack.html#a72126ff853ee64a18dd18af55c5dc065">collection2::Stack::pop</a></div><div class="ttdeci">OperationResult pop(Element *const data)</div><div class="ttdoc">スタックからデータを取り出し</div><div class="ttdef"><b>Definition:</b> stack.hpp:123</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_ae9f0c0512dc638ed8a0c7c6f0bd12623"><div class="ttname"><a href="classcollection2_1_1Stack.html#ae9f0c0512dc638ed8a0c7c6f0bd12623">collection2::Stack::amount</a></div><div class="ttdeci">Size amount() const</div><div class="ttdoc">現在スタック内にあるデータ数を返す</div><div class="ttdef"><b>Definition:</b> stack.hpp:82</div></div>
+<div class="ttc" id="aclasscollection2_1_1Stack_html_af3d99abd43c9b9d1fdb2a85af5c23c52"><div class="ttname"><a href="classcollection2_1_1Stack.html#af3d99abd43c9b9d1fdb2a85af5c23c52">collection2::Stack::hasSpace</a></div><div class="ttdeci">bool hasSpace() const</div><div class="ttdoc">スタックに値を追加できるか</div><div class="ttdef"><b>Definition:</b> stack.hpp:91</div></div>
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div></div>
 <div class="ttc" id="acommon_8hpp_html_a8f111c87182b0df98cc94dbf5881d538"><div class="ttname"><a href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">collection2::OperationResult</a></div><div class="ttdeci">OperationResult</div><div class="ttdoc">コレクション操作結果</div><div class="ttdef"><b>Definition:</b> common.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
