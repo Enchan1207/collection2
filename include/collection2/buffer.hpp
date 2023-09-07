@@ -5,7 +5,6 @@
 #ifndef _COLLECTION2_BUFFER_H_
 #define _COLLECTION2_BUFFER_H_
 
-#include <limits.h>
 #include <stdint.h>
 
 #include "common.hpp"
@@ -127,16 +126,12 @@ Buffer<Element>::Buffer(Element* const data, const buffer_size_t& dataSize) : in
     }
 
     // 与えられたサイズを上回らない最大の2の冪数を探す
-    const uint8_t BufferSizeBitLength = sizeof(buffer_size_t) * CHAR_BIT;  // バッファサイズのビット数
-    uint8_t currentBitPosition = BufferSizeBitLength;
-    buffer_size_t candidate = 0;
-    do {
-        candidate = static_cast<buffer_size_t>(1 << currentBitPosition);
-        if ((candidate & dataSize) != 0) {
-            break;
-        }
-    } while (currentBitPosition--);
-    internalDataSize = candidate;
+    unsigned char maxbitPos = 0;
+    buffer_size_t size = dataSize;
+    while ((size >>= 1) != 0) {
+        maxbitPos++;
+    }
+    internalDataSize = 1 << maxbitPos;
 };
 
 template <typename Element>
