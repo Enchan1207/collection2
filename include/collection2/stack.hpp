@@ -5,24 +5,19 @@
 #ifndef _COLLECTION2_STACK_H_
 #define _COLLECTION2_STACK_H_
 
-#include <limits.h>
-#include <stdint.h>
+#include <stddef.h>
 
 #include "common.hpp"
 
 namespace collection2 {
 
 /**
- * @brief スタックサイズを管理する変数の型
- */
-using stack_size_t = uint16_t;
-
-/**
  * @brief スタック
  *
- * @tparam Element 扱う要素の型
+ * @tparam Element
+ * @tparam Size
  */
-template <typename Element>
+template <typename Element, typename Size = size_t>
 class Stack {
    private:
     /**
@@ -33,12 +28,12 @@ class Stack {
     /**
      * @brief 内部データ長さ
      */
-    stack_size_t internalDataSize;
+    Size internalDataSize;
 
     /**
      * @brief スタックポインタ
      */
-    stack_size_t sp = 0;
+    Size sp = 0;
 
    public:
     /**
@@ -47,7 +42,7 @@ class Stack {
      * @param data 内部データ保管用領域
      * @param dataSize 領域サイズ
      */
-    Stack(Element* const data, const stack_size_t& dataSize);
+    Stack(Element* const data, const Size& dataSize);
 
     Stack(const Stack&) = delete;
     Stack& operator=(const Stack&) = delete;
@@ -75,7 +70,7 @@ class Stack {
      *
      * @return buffer_size_t スタック長
      */
-    stack_size_t capacity() const {
+    Size capacity() const {
         return internalDataSize;
     }
 
@@ -84,7 +79,7 @@ class Stack {
      *
      * @return buffer_size_t スタック内に存在するデータの数
      */
-    stack_size_t amount() const {
+    Size amount() const {
         return sp;
     }
 
@@ -107,11 +102,11 @@ class Stack {
     }
 };
 
-template <typename Element>
-Stack<Element>::Stack(Element* const data, const stack_size_t& dataSize) : internalData(data), internalDataSize(dataSize){};
+template <typename Element, typename Size>
+Stack<Element, Size>::Stack(Element* const data, const Size& dataSize) : internalData(data), internalDataSize(dataSize){};
 
-template <typename Element>
-OperationResult Stack<Element>::push(const Element& data) {
+template <typename Element, typename Size>
+OperationResult Stack<Element, Size>::push(const Element& data) {
     // スタックがいっぱいなら戻る
     if (!hasSpace()) {
         return OperationResult::Overflow;
@@ -124,8 +119,8 @@ OperationResult Stack<Element>::push(const Element& data) {
     return OperationResult::Success;
 }
 
-template <typename Element>
-OperationResult Stack<Element>::pop(Element* const data) {
+template <typename Element, typename Size>
+OperationResult Stack<Element, Size>::pop(Element* const data) {
     // スタックが空なら戻る
     if (isEmpty()) {
         return OperationResult::Empty;

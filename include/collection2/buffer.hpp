@@ -5,24 +5,19 @@
 #ifndef _COLLECTION2_BUFFER_H_
 #define _COLLECTION2_BUFFER_H_
 
-#include <limits.h>
-#include <stdint.h>
+#include <stddef.h>
 
 #include "common.hpp"
 
 namespace collection2 {
 
 /**
- * @brief バッファサイズを管理する変数の型
- */
-using buffer_size_t = uint16_t;
-
-/**
  * @brief リングバッファ
  *
- * @tparam Element 扱う要素の型
+ * @tparam Element
+ * @tparam Size
  */
-template <typename Element>
+template <typename Element, typename Size = size_t>
 class Buffer {
    private:
     /**
@@ -33,22 +28,22 @@ class Buffer {
     /**
      * @brief 内部データ長さ
      */
-    buffer_size_t internalDataSize;
+    Size internalDataSize;
 
     /**
      * @brief バッファ先頭
      */
-    buffer_size_t head = 0;
+    Size head = 0;
 
     /**
      * @brief バッファ末尾
      */
-    buffer_size_t tail = 0;
+    Size tail = 0;
 
     /**
      * @brief 現在バッファ内に存在するデータ数
      */
-    buffer_size_t count = 0;
+    Size count = 0;
 
    public:
     /**
@@ -58,7 +53,7 @@ class Buffer {
      * @param dataSize 領域サイズ
      * @note 領域サイズは2の冪乗であるべきです。それ以外の値を指定した場合、2の冪数のうち領域のサイズを下回らない最大のものが選択されます(15 -> 8, 34 -> 32).
      */
-    Buffer(Element* const data, const buffer_size_t& dataSize);
+    Buffer(Element* const data, const Size& dataSize);
 
     Buffer(const Buffer&) = delete;
     Buffer& operator=(const Buffer&) = delete;
@@ -84,18 +79,18 @@ class Buffer {
     /**
      * @brief バッファの全体長を返す
      *
-     * @return buffer_size_t バッファ長
+     * @return Size バッファ長
      */
-    buffer_size_t capacity() const {
+    Size capacity() const {
         return internalDataSize;
     }
 
     /**
      * @brief 現在バッファ内にあるデータ数を返す
      *
-     * @return buffer_size_t バッファ内に存在するデータの数
+     * @return Size バッファ内に存在するデータの数
      */
-    buffer_size_t amount() const {
+    Size amount() const {
         return count;
     }
 
@@ -118,8 +113,8 @@ class Buffer {
     }
 };
 
-template <typename Element>
-Buffer<Element>::Buffer(Element* const data, const buffer_size_t& dataSize) : internalData(data) {
+template <typename Element, typename Size>
+Buffer<Element, Size>::Buffer(Element* const data, const Size& dataSize) : internalData(data) {
     // ゼロ長のバッファなら何もしない
     if (dataSize == 0) {
         internalDataSize = dataSize;
@@ -127,20 +122,16 @@ Buffer<Element>::Buffer(Element* const data, const buffer_size_t& dataSize) : in
     }
 
     // 与えられたサイズを上回らない最大の2の冪数を探す
-    const uint8_t BufferSizeBitLength = sizeof(buffer_size_t) * CHAR_BIT;  // バッファサイズのビット数
-    uint8_t currentBitPosition = BufferSizeBitLength;
-    buffer_size_t candidate = 0;
-    do {
-        candidate = static_cast<buffer_size_t>(1 << currentBitPosition);
-        if ((candidate & dataSize) != 0) {
-            break;
-        }
-    } while (currentBitPosition--);
-    internalDataSize = candidate;
+    unsigned char maxbitPos = 0;
+    Size size = dataSize;
+    while ((size >>= 1) != 0) {
+        maxbitPos++;
+    }
+    internalDataSize = 1 << maxbitPos;
 };
 
-template <typename Element>
-OperationResult Buffer<Element>::append(const Element& data) {
+template <typename Element, typename Size>
+OperationResult Buffer<Element, Size>::append(const Element& data) {
     // サイズ0のバッファに値を追加することはできない
     if (internalDataSize == 0) {
         return OperationResult::Overflow;
@@ -160,8 +151,8 @@ OperationResult Buffer<Element>::append(const Element& data) {
     return OperationResult::Success;
 }
 
-template <typename Element>
-OperationResult Buffer<Element>::pop(Element* const data) {
+template <typename Element, typename Size>
+OperationResult Buffer<Element, Size>::pop(Element* const data) {
     // バッファが空なら戻る
     if (isEmpty()) {
         return OperationResult::Empty;
