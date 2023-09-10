@@ -8,7 +8,7 @@ include(FetchContent)
 FetchContent_Declare(
     avr-serial
     GIT_REPOSITORY https://github.com/Enchan1207/avr-serial
-    GIT_TAG v0.1.1
+    GIT_TAG v0.2.0
 )
 FetchContent_MakeAvailable(avr-serial)
 
@@ -22,7 +22,7 @@ macro(add_test_target source_file_name)
     )
     target_include_directories(${target_name} PRIVATE ${PROJECT_SOURCE_DIR}/include)
     target_compile_options(${target_name} PRIVATE -Wall)
-    target_link_libraries(${target_name} PRIVATE usart)
+    target_link_libraries(${target_name} PRIVATE uart)
 endmacro()
 
 # テストターゲットの構成

@@ -5,9 +5,11 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include <usart/impl.hpp>
+#include <uart/uart.hpp>
 
 #include "collection2/buffer.hpp"
+
+using namespace uart;
 
 int main() {
     sei();
