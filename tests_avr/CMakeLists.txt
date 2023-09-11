@@ -18,11 +18,13 @@ macro(add_test_target source_file_name)
     add_executable(${target_name})
     target_sources(${target_name} PRIVATE
         isrs.cpp
+        testcase.cpp
         ${source_file_name}
     )
     target_include_directories(${target_name} PRIVATE ${PROJECT_SOURCE_DIR}/include)
     target_compile_options(${target_name} PRIVATE -Wall)
     target_link_libraries(${target_name} PRIVATE uart)
+    target_configure_for_avr(${target_name})
 endmacro()
 
 # テストターゲットの構成
