@@ -1,11 +1,11 @@
 #
 # collection2
 #
+cmake_minimum_required(VERSION 3.0)
 
 #
 # project configuration
 #
-cmake_minimum_required(VERSION 3.0)
 project(collection2
     VERSION 0.2.0
     DESCRIPTION "collection of data structures"
@@ -28,7 +28,6 @@ install(
     DESTINATION include
 )
 
-
 #
 # unit testing configuration
 #
@@ -38,5 +37,11 @@ if(COLLECTION2_BUILD_TESTS)
     enable_testing()
     message(NOTICE "collection2: unit testing is enabled")
     
-    add_subdirectory(tests)
+    # If you use collection2 on AVR microcontroller
+    # using Enchan1207/cmake-avr, tests_avr will be added instead of tests.
+    if(DEFINED BUILD_FOR_AVR AND BUILD_FOR_AVR)
+        add_subdirectory(tests_avr)
+    else()
+        add_subdirectory(tests)
+    endif()
 endif()
