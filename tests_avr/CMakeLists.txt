@@ -12,6 +12,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(avr-serial)
 
+# QEMUの -machine に渡す値と avr-gccの -mmcu に渡す値のマップ
+set(qemu_machine_map_atmega168 arduino-duemilanove)
+set(qemu_machine_map_atmega168p arduino-duemilanove)
+set(qemu_machine_map_atmega328 arduino-uno)
+set(qemu_machine_map_atmega328p arduino-uno)
+set(qemu_machine_map_atmega1280 arduino-mega)
+set(qemu_machine_map_atmega2560 arduino-mega-2560-v3)
+
 # AVR用テストターゲットジェネレータ
 macro(add_test_target source_file_name)
     get_filename_component(target_name "${source_file_name}" NAME_WE)
@@ -25,6 +33,7 @@ macro(add_test_target source_file_name)
     target_compile_options(${target_name} PRIVATE -Wall)
     target_link_libraries(${target_name} PRIVATE uart)
     target_configure_for_avr(${target_name})
+    add_test(NAME assert_${target_name} COMMAND ${PROJECT_SOURCE_DIR}/tests_avr/testcase_capture.py -M ${qemu_machine_map_${AVR_MCU}} -bios ${target_name})
 endmacro()
 
 # テストターゲットの構成
