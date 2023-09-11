@@ -1,6 +1,6 @@
 <img style="max-width: 700px;" src="banner.png">
 
-[![CMake](https://github.com/Enchan1207/collection2/actions/workflows/cmake.yml/badge.svg)](https://github.com/Enchan1207/collection2/actions/workflows/cmake.yml)
+[![unittest](https://github.com/Enchan1207/collection2/actions/workflows/unittest.yml/badge.svg)](https://github.com/Enchan1207/collection2/actions/workflows/unittest.yml)
 
 ## Overview
 
