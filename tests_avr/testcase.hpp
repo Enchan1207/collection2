@@ -1,8 +1,8 @@
 //
 //
 //
-#ifndef UART_TESTCASE_H
-#define UART_TESTCASE_H
+#ifndef COLLECTION2_TESTCASE_H
+#define COLLECTION2_TESTCASE_H
 
 #include <stddef.h>
 
@@ -16,12 +16,13 @@
 #define BeginTestcase(result) bool result = true
 #define EndTestcase(result) return result
 
-#define EXPECT(expressionstr, expression, result) result = collection2tests::expect(expressionstr, expression)
+#define EXPECT(expressionstr, expression, result) result = botanisttests::expect(expressionstr, expression)
 #define EXPECT_EQ(lhs, rhs, result) EXPECT(#lhs " == " #rhs, lhs == rhs, result)
+#define EXPECT_NE(lhs, rhs, result) EXPECT(#lhs " != " #rhs, lhs != rhs, result)
 #define EXPECT_TRUE(expression, result) EXPECT(#expression " == true", expression, result)
 #define EXPECT_FALSE(expression, result) EXPECT(#expression " == false", !(expression), result)
 
-namespace collection2tests {
+namespace botanisttests {
 
 /**
  * @brief テストケースの関数ポインタ
@@ -47,6 +48,6 @@ extern const size_t testCount;
  */
 bool expect(const char* const expressionStr, bool expression);
 
-}  // namespace collection2tests
+}  // namespace botanisttests
 
-#endif /* UART_TESTCASE_H */
+#endif /* COLLECTION2_TESTCASE_H */

@@ -52,11 +52,11 @@ TEST(testRemove) {
 
     /// こんな感じの木を構成する
     ///
-    ///    0
-    ///   /  \
+    ///     0
+    ///    / |
     /// 123  456
-    ///      / \
-    ///    999 789
+    ///     / |
+    ///  999  789
     tree.appendChild(tree.getRootNode(), 123, TreeNodeSide::Left);
     TreeNode<int>* node = nullptr;
     tree.appendChild(tree.getRootNode(), 456, TreeNodeSide::Right, &node);
