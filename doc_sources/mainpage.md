@@ -12,6 +12,7 @@ collection2 (collection of collection) は、コレクションを扱う基本�
     - 動的メモリ割当て (`malloc`, `new` 等) は行っていません。データ領域はコンストラクタで指定します。
     - 例外 (`try`, `throw`) を使用していません。コレクションに対する操作結果は `collection2::OperationResult` で返ります。
     - STLに依存しません。単体でコンパイル可能です。
+    - **全てのテストケースがAVRマイコン(QEMU)でパスすることを確認しています。**
 
 ### Provided data structures
 
@@ -21,6 +22,7 @@ collection2が提供するデータ構造は以下の通りです。
  - スタック (`collection2::Stack`)
  - リングバッファ (`collection2::Buffer`)
  - 連結リスト (`collection2::List`)
+ - ツリー (`collection2::Tree`)
 
 ### Installation
 

@@ -1,7 +1,7 @@
 #
 # collection2 tests for AVR microcontroller
 #
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 
 # AVR用UARTライブラリの導入
 include(FetchContent)
