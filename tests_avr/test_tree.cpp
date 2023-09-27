@@ -78,4 +78,12 @@ TEST(testRemove) {
     EndTestcase(result);
 }
 
+const TestFunction tests[] = {
+    testBasicOperation,
+    testDuplicate,
+    testRemove,
+};
+
+const size_t testCount = sizeof(tests) / sizeof(TestFunction);
+
 }  // namespace collection2tests
