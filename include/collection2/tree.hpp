@@ -156,11 +156,6 @@ inline OperationResult collection2::Tree<Element, Size>::appendChild(
     const Element& target,
     const TreeNodeSide side,
     TreeNode<Element, Size>** addedNodePtr) {
-    // parentがnullであってはならない
-    if (parent == nullptr) {
-        return OperationResult::Empty;
-    }
-
     // 新しいノードをもらってくる
     auto* newNode = getNewNode();
     if (newNode == nullptr) {
@@ -170,15 +165,17 @@ inline OperationResult collection2::Tree<Element, Size>::appendChild(
         return OperationResult::Overflow;
     }
 
-    // 追加したい方に値があるなら戻る
-    auto** checkside = &((side == TreeNodeSide::Left) ? parent->lhs : parent->rhs);
-    if (*checkside != nullptr) {
-        return OperationResult::Overflow;
+    // 親ノードの追加したい方と追加するノードを接続する
+    if (parent != nullptr) {
+        auto** checkside = &((side == TreeNodeSide::Left) ? parent->lhs : parent->rhs);
+        if (*checkside != nullptr) {
+            return OperationResult::Overflow;
+        }
+        *checkside = newNode;
     }
 
     // 値をセット
     newNode->element = target;
-    *checkside = newNode;
 
     // 新規生成したノードへのポインタを渡す
     if (addedNodePtr != nullptr) {
