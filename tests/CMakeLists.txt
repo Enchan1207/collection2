@@ -22,6 +22,7 @@ target_sources(collection2_test PRIVATE
     test_buffer.cpp
     test_list.cpp
     test_stack.cpp
+    test_tree.cpp
 )
 target_link_libraries(collection2_test PRIVATE
     GTest::gtest_main
