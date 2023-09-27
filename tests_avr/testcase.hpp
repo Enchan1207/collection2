@@ -1,8 +1,8 @@
 //
 //
 //
-#ifndef UART_TESTCASE_H
-#define UART_TESTCASE_H
+#ifndef COLLECTION2_TESTCASE_H
+#define COLLECTION2_TESTCASE_H
 
 #include <stddef.h>
 
@@ -18,6 +18,7 @@
 
 #define EXPECT(expressionstr, expression, result) result = collection2tests::expect(expressionstr, expression)
 #define EXPECT_EQ(lhs, rhs, result) EXPECT(#lhs " == " #rhs, lhs == rhs, result)
+#define EXPECT_NE(lhs, rhs, result) EXPECT(#lhs " != " #rhs, lhs != rhs, result)
 #define EXPECT_TRUE(expression, result) EXPECT(#expression " == true", expression, result)
 #define EXPECT_FALSE(expression, result) EXPECT(#expression " == false", !(expression), result)
 
@@ -49,4 +50,4 @@ bool expect(const char* const expressionStr, bool expression);
 
 }  // namespace collection2tests
 
-#endif /* UART_TESTCASE_H */
+#endif /* COLLECTION2_TESTCASE_H */
