@@ -77,13 +77,6 @@ class Tree {
      */
     TreeNode<Element>* rootNode;
 
-    /**
-     * @brief 新しいノードへのポインタを返す
-     *
-     * @return Node<Element>* データを追加できる位置のポインタ。内部データ領域がいっぱいの場合はnullptrが返ります。
-     */
-    TreeNode<Element, Size>* getNewNode() const;
-
    public:
     /**
      * @brief 内部データを扱う領域とそのサイズを指定してリストを初期化
@@ -108,7 +101,15 @@ class Tree {
     }
 
     /**
-     * @brief 子ノードを生成・追加する
+     * @brief 内部ノードプールから空きノードを探し、確保する
+     *
+     * @return TreeNode<Element, Size>* 確保できたノードのポインタ
+     * @note 空きノードがない場合はnullptrが返ります。
+     */
+    TreeNode<Element, Size>* retainNode() const;
+
+    /**
+     * @brief 子ノードを生成し、既存ノードに追加する
      *
      * @param parent 追加対象の親ノード
      * @param target 追加する要素
@@ -119,7 +120,7 @@ class Tree {
      * @note すでに子ノードを持っているか内部データ管理領域がいっぱいの場合、この関数は何もせずに戻ります。
      */
     OperationResult appendChild(
-        TreeNode<Element, Size>* parent,
+        TreeNode<Element, Size>& parent,
         const Element& target,
         const TreeNodeSide side,
         TreeNode<Element, Size>** addedNodePtr = nullptr);
@@ -152,12 +153,12 @@ Tree<Element, Size>::Tree(TreeNode<Element, Size>* const data, const Size& dataS
 
 template <typename Element, typename Size>
 inline OperationResult collection2::Tree<Element, Size>::appendChild(
-    TreeNode<Element, Size>* parent,
+    TreeNode<Element, Size>& parent,
     const Element& target,
     const TreeNodeSide side,
     TreeNode<Element, Size>** addedNodePtr) {
     // 新しいノードをもらってくる
-    auto* newNode = getNewNode();
+    auto* newNode = retainNode();
     if (newNode == nullptr) {
         if (addedNodePtr != nullptr) {
             *addedNodePtr = nullptr;
@@ -165,14 +166,12 @@ inline OperationResult collection2::Tree<Element, Size>::appendChild(
         return OperationResult::Overflow;
     }
 
-    // 親ノードの追加したい方と追加するノードを接続する
-    if (parent != nullptr) {
-        auto** checkside = &((side == TreeNodeSide::Left) ? parent->lhs : parent->rhs);
-        if (*checkside != nullptr) {
-            return OperationResult::Overflow;
-        }
-        *checkside = newNode;
+    // 親ノードの追加したい方に追加するノードを接続する
+    auto** checkside = &((side == TreeNodeSide::Left) ? parent->lhs : parent->rhs);
+    if (*checkside != nullptr) {
+        return OperationResult::Overflow;
     }
+    *checkside = newNode;
 
     // 値をセット
     newNode->element = target;
@@ -209,7 +208,7 @@ inline void collection2::Tree<Element, Size>::removeChild(TreeNode<Element, Size
 }
 
 template <typename Element, typename Size>
-inline TreeNode<Element, Size>* Tree<Element, Size>::getNewNode() const {
+inline TreeNode<Element, Size>* Tree<Element, Size>::retainNode() const {
     for (Size i = 0; i < internalDataSize; i++) {
         if (internalData[i].isEnabled) {
             continue;
