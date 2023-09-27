@@ -47,7 +47,7 @@ std::cout << std::endl;
 
 実行結果:
 
-```sh
+```
 1,2,3,4,5,6,7,8,
 ```
 
@@ -106,7 +106,7 @@ std::cout << std::endl;
 
 実行結果:
 
-```sh
+```
 5,4,3,2,1,
 ```
 
@@ -153,7 +153,7 @@ std::cout << std::endl;
 
 実行結果:
 
-```sh
+```
 2,3,4,5,
 ```
 
@@ -192,7 +192,7 @@ std::cout << value << std::endl;
 
 実行結果:
 
-```sh
+```
 456
 456
 123
@@ -201,4 +201,34 @@ std::cout << value << std::endl;
 このサンプルコードでは、まず長さ3のリストを定義し、1つのデータを挿入します。次に位置を指定してもう1つのデータを追加し、リストを破壊せずに先頭にある要素を参照します。  
 その後、位置を指定してリスト内のデータを取り出し、最後にリスト末尾からデータを取り出します。
 
+## Tree
 
+ツリー (`collection2::Tree`) は、各要素が左右の子を持つ構造です。
+
+```cpp
+// ツリーを構成
+TreeNode<int> nodePool[32];
+Tree<int> tree(nodePool, sizeof(nodePool) / sizeof(nodePool[0]));
+
+// ルートノードを参照
+tree.getRootNode()->element = 123;
+
+// 子ノードを追加
+TreeNode<int>* leftAdded = nullptr;
+tree.appendChild(tree.getRootNode(), 123, TreeNodeSide::Left, &leftAdded);
+std::cout << leftAdded->element << std::endl; // 123
+
+// 親ノードを指定して子を追加
+tree.appendChild(leftAdded, 456, TreeNodeSide::Right);
+
+// 子ノードを参照
+auto value = tree.getRootNode()->lhs->rhs->element;
+std::cout << value << std::endl; // 456
+```
+
+実行結果:
+
+```
+123
+456
+```
