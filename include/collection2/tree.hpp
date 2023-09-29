@@ -37,7 +37,7 @@ struct TreeNode {
      *
      * @return bool
      */
-    bool isLeaf() {
+    bool isLeaf() const {
         return (lhs == nullptr) && (rhs == nullptr);
     };
 };
