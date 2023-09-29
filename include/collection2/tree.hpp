@@ -87,6 +87,12 @@ class Tree {
     ~Tree() = default;
 
     /**
+     * @brief ツリーノードプールを初期化する
+     * @note 既存のツリーは全て削除されます。
+     */
+    void initializeTreeNodePool();
+
+    /**
      * @brief 内部ノードプールから空きノードを探し、確保する
      *
      * @return TreeNode<Element, Size>* 確保できたノードのポインタ
@@ -152,7 +158,16 @@ class Tree {
 
 template <typename Element, typename Size>
 Tree<Element, Size>::Tree(TreeNode<Element, Size>* const data, const Size& dataSize)
-    : internalData(data), internalDataSize(dataSize){};
+    : internalData(data), internalDataSize(dataSize) {
+    initializeTreeNodePool();
+};
+
+template <typename Element, typename Size>
+inline void Tree<Element, Size>::initializeTreeNodePool() {
+    for (Size i = 0; i < internalDataSize; i++) {
+        internalData[i].isEnabled = false;
+    }
+}
 
 template <typename Element, typename Size>
 inline TreeNode<Element, Size>* Tree<Element, Size>::retainNode() const {
