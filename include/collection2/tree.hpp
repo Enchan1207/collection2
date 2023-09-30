@@ -37,7 +37,7 @@ struct TreeNode {
      *
      * @return bool
      */
-    bool isLeaf() {
+    bool isLeaf() const {
         return (lhs == nullptr) && (rhs == nullptr);
     };
 };
@@ -72,18 +72,6 @@ class Tree {
      */
     Size internalDataSize;
 
-    /**
-     * @brief ルートノード
-     */
-    TreeNode<Element>* rootNode;
-
-    /**
-     * @brief 新しいノードへのポインタを返す
-     *
-     * @return Node<Element>* データを追加できる位置のポインタ。内部データ領域がいっぱいの場合はnullptrが返ります。
-     */
-    TreeNode<Element, Size>* getNewNode() const;
-
    public:
     /**
      * @brief 内部データを扱う領域とそのサイズを指定してリストを初期化
@@ -99,16 +87,29 @@ class Tree {
     ~Tree() = default;
 
     /**
-     * @brief ルートノードへの参照を返す
-     *
-     * @return TreeNode<Element, Size>*
+     * @brief ツリーノードプールを初期化する
+     * @note 既存のツリーは全て削除されます。
      */
-    TreeNode<Element, Size>* getRootNode() const {
-        return rootNode;
-    }
+    void initializeTreeNodePool();
 
     /**
-     * @brief 子ノードを生成・追加する
+     * @brief 内部ノードプールから空きノードを探し、確保する
+     *
+     * @return TreeNode<Element, Size>* 確保できたノードのポインタ
+     * @note 空きノードがない場合はnullptrが返ります。
+     */
+    TreeNode<Element, Size>* retainNode() const;
+
+    /**
+     * @brief 内部ノードプールから空きノードを探し、値を割り当てる
+     *
+     * @return TreeNode<Element, Size>* 確保できたノードのポインタ
+     * @note 空きノードがない場合はnullptrが返ります。
+     */
+    TreeNode<Element, Size>* retainNode(const Element& element) const;
+
+    /**
+     * @brief 子ノードを生成し、既存ノードに追加する
      *
      * @param parent 追加対象の親ノード
      * @param target 追加する要素
@@ -123,6 +124,18 @@ class Tree {
         const Element& target,
         const TreeNodeSide side,
         TreeNode<Element, Size>** addedNodePtr = nullptr);
+
+    /**
+     * @brief ノードを別のノードに接続する
+     *
+     * @param parent 接続元のノード
+     * @param node 接続先のノード
+     * @param side 接続する位置
+     */
+    OperationResult linkNode(
+        TreeNode<Element, Size>& parent,
+        TreeNode<Element, Size>* node,
+        const TreeNodeSide side) const;
 
     /**
      * @brief 子ノードを削除する
@@ -145,10 +158,45 @@ class Tree {
 
 template <typename Element, typename Size>
 Tree<Element, Size>::Tree(TreeNode<Element, Size>* const data, const Size& dataSize)
-    : internalData(data), internalDataSize(dataSize), rootNode(internalData) {
-    // ルートノードを初期化しておく
-    rootNode->isEnabled = true;
+    : internalData(data), internalDataSize(dataSize) {
+    initializeTreeNodePool();
 };
+
+template <typename Element, typename Size>
+inline void Tree<Element, Size>::initializeTreeNodePool() {
+    for (Size i = 0; i < internalDataSize; i++) {
+        internalData[i].isEnabled = false;
+    }
+}
+
+template <typename Element, typename Size>
+inline TreeNode<Element, Size>* Tree<Element, Size>::retainNode() const {
+    for (Size i = 0; i < internalDataSize; i++) {
+        if (internalData[i].isEnabled) {
+            continue;
+        }
+
+        // 見つかったらノードを初期化して返す
+        internalData[i].isEnabled = true;
+        internalData[i].lhs = nullptr;
+        internalData[i].rhs = nullptr;
+        return &(internalData[i]);
+    }
+    return nullptr;
+}
+
+template <typename Element, typename Size>
+inline TreeNode<Element, Size>* collection2::Tree<Element, Size>::retainNode(const Element& element) const {
+    // ノードを確保
+    auto* node = retainNode();
+    if (node == nullptr) {
+        return nullptr;
+    }
+
+    // 値を設定して返す
+    node->element = element;
+    return node;
+}
 
 template <typename Element, typename Size>
 inline OperationResult collection2::Tree<Element, Size>::appendChild(
@@ -156,22 +204,18 @@ inline OperationResult collection2::Tree<Element, Size>::appendChild(
     const Element& target,
     const TreeNodeSide side,
     TreeNode<Element, Size>** addedNodePtr) {
+    // 親ノードがnullであってはならない(単純なノードの確保はretainNodeを使う)
+    if (parent == nullptr) {
+        return OperationResult::Empty;
+    }
+
     // 新しいノードをもらってくる
-    auto* newNode = getNewNode();
+    auto* newNode = retainNode();
     if (newNode == nullptr) {
         if (addedNodePtr != nullptr) {
             *addedNodePtr = nullptr;
         }
         return OperationResult::Overflow;
-    }
-
-    // 親ノードの追加したい方と追加するノードを接続する
-    if (parent != nullptr) {
-        auto** checkside = &((side == TreeNodeSide::Left) ? parent->lhs : parent->rhs);
-        if (*checkside != nullptr) {
-            return OperationResult::Overflow;
-        }
-        *checkside = newNode;
     }
 
     // 値をセット
@@ -181,16 +225,35 @@ inline OperationResult collection2::Tree<Element, Size>::appendChild(
     if (addedNodePtr != nullptr) {
         *addedNodePtr = newNode;
     }
+
+    // 親ノードの追加したい方に追加するノードを接続する
+    return linkNode(*parent, newNode, side);
+}
+
+template <typename Element, typename Size>
+inline OperationResult collection2::Tree<Element, Size>::linkNode(TreeNode<Element, Size>& parent, TreeNode<Element, Size>* node, const TreeNodeSide side) const {
+    if (node == nullptr) {
+        return OperationResult::Empty;
+    }
+
+    // sideで指定された方にnodeを繋ぐ すでにある場合は書き換えない
+    if (side == TreeNodeSide::Left) {
+        if (parent.lhs != nullptr) {
+            return OperationResult::Overflow;
+        }
+        parent.lhs = node;
+    }
+    if (side == TreeNodeSide::Right) {
+        if (parent.rhs != nullptr) {
+            return OperationResult::Overflow;
+        }
+        parent.rhs = node;
+    }
     return OperationResult::Success;
 }
 
 template <typename Element, typename Size>
 inline void collection2::Tree<Element, Size>::removeChild(TreeNode<Element, Size>* target) {
-    // ルートノードは削除できない
-    if (target == rootNode) {
-        return;
-    }
-
     // リーフならデアクティベートして終わり
     if (target->isLeaf()) {
         target->isEnabled = false;
@@ -206,22 +269,6 @@ inline void collection2::Tree<Element, Size>::removeChild(TreeNode<Element, Size
         removeChild(target->rhs);
         target->rhs = nullptr;
     }
-}
-
-template <typename Element, typename Size>
-inline TreeNode<Element, Size>* Tree<Element, Size>::getNewNode() const {
-    for (Size i = 0; i < internalDataSize; i++) {
-        if (internalData[i].isEnabled) {
-            continue;
-        }
-
-        // 見つかったらノードを初期化して返す
-        internalData[i].isEnabled = true;
-        internalData[i].lhs = nullptr;
-        internalData[i].rhs = nullptr;
-        return &(internalData[i]);
-    }
-    return nullptr;
 }
 
 }  // namespace collection2
