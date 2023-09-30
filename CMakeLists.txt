@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.10)
 # project configuration
 #
 project(collection2
-    VERSION 0.5.0
+    VERSION 0.6.0
     DESCRIPTION "collection of data structures"
     LANGUAGES C CXX
 )
