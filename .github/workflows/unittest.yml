@@ -54,7 +54,9 @@ jobs:
           ~/arduino-cli/arduino-cli core install arduino:avr
 
       - name: setup QEMU
-        run: sudo apt-get -y install qemu-system
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install qemu-system
 
       - name: clone AVR toolchain
         run: git clone https://github.com/Enchan1207/cmake-avr ~/cmake-avr
