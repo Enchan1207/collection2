@@ -92,12 +92,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a76ef7efc10afd4c21f86e4e4fb60b3e5"><td class="memItemLeft" align="right" valign="top"><a id="a76ef7efc10afd4c21f86e4e4fb60b3e5" name="a76ef7efc10afd4c21f86e4e4fb60b3e5"></a>
 <a class="el" href="classcollection2_1_1Tree.html">Tree</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classcollection2_1_1Tree.html">Tree</a> &amp;)=delete</td></tr>
 <tr class="separator:a76ef7efc10afd4c21f86e4e4fb60b3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cb17a8ef6958d4f7e8b2b795bb47108"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#a9cb17a8ef6958d4f7e8b2b795bb47108">getRootNode</a> () const</td></tr>
-<tr class="memdesc:a9cb17a8ef6958d4f7e8b2b795bb47108"><td class="mdescLeft">&#160;</td><td class="mdescRight">ルートノードへの参照を返す  <a href="classcollection2_1_1Tree.html#a9cb17a8ef6958d4f7e8b2b795bb47108">More...</a><br /></td></tr>
-<tr class="separator:a9cb17a8ef6958d4f7e8b2b795bb47108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b4ee3678ebd348da27b6c2d75e1e99f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#a1b4ee3678ebd348da27b6c2d75e1e99f">initializeTreeNodePool</a> ()</td></tr>
+<tr class="memdesc:a1b4ee3678ebd348da27b6c2d75e1e99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ツリーノードプールを初期化する  <a href="classcollection2_1_1Tree.html#a1b4ee3678ebd348da27b6c2d75e1e99f">More...</a><br /></td></tr>
+<tr class="separator:a1b4ee3678ebd348da27b6c2d75e1e99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc4bf34206437db64922a12e71e72a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#a7dc4bf34206437db64922a12e71e72a7">retainNode</a> () const</td></tr>
+<tr class="memdesc:a7dc4bf34206437db64922a12e71e72a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">内部ノードプールから空きノードを探し、確保する  <a href="classcollection2_1_1Tree.html#a7dc4bf34206437db64922a12e71e72a7">More...</a><br /></td></tr>
+<tr class="separator:a7dc4bf34206437db64922a12e71e72a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a3ba776715d58ca8a1db294a563495a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#a9a3ba776715d58ca8a1db294a563495a">retainNode</a> (const Element &amp;element) const</td></tr>
+<tr class="memdesc:a9a3ba776715d58ca8a1db294a563495a"><td class="mdescLeft">&#160;</td><td class="mdescRight">内部ノードプールから空きノードを探し、値を割り当てる  <a href="classcollection2_1_1Tree.html#a9a3ba776715d58ca8a1db294a563495a">More...</a><br /></td></tr>
+<tr class="separator:a9a3ba776715d58ca8a1db294a563495a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5edef01993e2a57894e758abf86fbb24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#a5edef01993e2a57894e758abf86fbb24">appendChild</a> (<a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *parent, const Element &amp;target, const TreeNodeSide side, <a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; **addedNodePtr=nullptr)</td></tr>
-<tr class="memdesc:a5edef01993e2a57894e758abf86fbb24"><td class="mdescLeft">&#160;</td><td class="mdescRight">子ノードを生成・追加する  <a href="classcollection2_1_1Tree.html#a5edef01993e2a57894e758abf86fbb24">More...</a><br /></td></tr>
+<tr class="memdesc:a5edef01993e2a57894e758abf86fbb24"><td class="mdescLeft">&#160;</td><td class="mdescRight">子ノードを生成し、既存ノードに追加する  <a href="classcollection2_1_1Tree.html#a5edef01993e2a57894e758abf86fbb24">More...</a><br /></td></tr>
 <tr class="separator:a5edef01993e2a57894e758abf86fbb24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc81bd669b0482c1077396b7be760061"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#adc81bd669b0482c1077396b7be760061">linkNode</a> (<a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; &amp;parent, <a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *node, const TreeNodeSide side) const</td></tr>
+<tr class="memdesc:adc81bd669b0482c1077396b7be760061"><td class="mdescLeft">&#160;</td><td class="mdescRight">ノードを別のノードに接続する  <a href="classcollection2_1_1Tree.html#adc81bd669b0482c1077396b7be760061">More...</a><br /></td></tr>
+<tr class="separator:adc81bd669b0482c1077396b7be760061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ce6d3f9a6e410105c299f109a93d0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcollection2_1_1Tree.html#a68ce6d3f9a6e410105c299f109a93d0b">removeChild</a> (<a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *target)</td></tr>
 <tr class="memdesc:a68ce6d3f9a6e410105c299f109a93d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">子ノードを削除する  <a href="classcollection2_1_1Tree.html#a68ce6d3f9a6e410105c299f109a93d0b">More...</a><br /></td></tr>
 <tr class="separator:a68ce6d3f9a6e410105c299f109a93d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,21 +165,77 @@ template&lt;typename Element , typename Size &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9cb17a8ef6958d4f7e8b2b795bb47108" name="a9cb17a8ef6958d4f7e8b2b795bb47108"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cb17a8ef6958d4f7e8b2b795bb47108">&#9670;&#160;</a></span>getRootNode()</h2>
+<a id="a1b4ee3678ebd348da27b6c2d75e1e99f" name="a1b4ee3678ebd348da27b6c2d75e1e99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b4ee3678ebd348da27b6c2d75e1e99f">&#9670;&#160;</a></span>initializeTreeNodePool()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Element , typename Size  = size_t&gt; </div>
+template&lt;typename Element , typename Size &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; * <a class="el" href="classcollection2_1_1Tree.html">collection2::Tree</a>&lt; Element, Size &gt;::getRootNode </td>
+          <td class="memname">void <a class="el" href="classcollection2_1_1Tree.html">collection2::Tree</a>&lt; Element, Size &gt;::initializeTreeNodePool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ツリーノードプールを初期化する </p>
+<dl class="section note"><dt>Note</dt><dd>既存のツリーは全て削除されます。 </dd></dl>
+
+</div>
+</div>
+<a id="a7dc4bf34206437db64922a12e71e72a7" name="a7dc4bf34206437db64922a12e71e72a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc4bf34206437db64922a12e71e72a7">&#9670;&#160;</a></span>retainNode() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element , typename Size &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; * <a class="el" href="classcollection2_1_1Tree.html">collection2::Tree</a>&lt; Element, Size &gt;::retainNode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>内部ノードプールから空きノードを探し、確保する </p>
+<dl class="section return"><dt>Returns</dt><dd>TreeNode&lt;Element, Size&gt;* 確保できたノードのポインタ </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>空きノードがない場合はnullptrが返ります。 </dd></dl>
+
+</div>
+</div>
+<a id="a9a3ba776715d58ca8a1db294a563495a" name="a9a3ba776715d58ca8a1db294a563495a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a3ba776715d58ca8a1db294a563495a">&#9670;&#160;</a></span>retainNode() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element , typename Size &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; * <a class="el" href="classcollection2_1_1Tree.html">collection2::Tree</a>&lt; Element, Size &gt;::retainNode </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const Element &amp;&#160;</td>
+          <td class="paramname"><em>element</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -181,8 +246,9 @@ template&lt;typename Element , typename Size  = size_t&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>ルートノードへの参照を返す </p>
-<dl class="section return"><dt>Returns</dt><dd>TreeNode&lt;Element, Size&gt;* </dd></dl>
+<p>内部ノードプールから空きノードを探し、値を割り当てる </p>
+<dl class="section return"><dt>Returns</dt><dd>TreeNode&lt;Element, Size&gt;* 確保できたノードのポインタ </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>空きノードがない場合はnullptrが返ります。 </dd></dl>
 
 </div>
 </div>
@@ -234,7 +300,7 @@ template&lt;typename Element , typename Size &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>子ノードを生成・追加する </p>
+<p>子ノードを生成し、既存ノードに追加する </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parent</td><td>追加対象の親ノード </td></tr>
@@ -246,6 +312,60 @@ template&lt;typename Element , typename Size &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>OperationResult 操作結果</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>すでに子ノードを持っているか内部データ管理領域がいっぱいの場合、この関数は何もせずに戻ります。 </dd></dl>
+
+</div>
+</div>
+<a id="adc81bd669b0482c1077396b7be760061" name="adc81bd669b0482c1077396b7be760061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc81bd669b0482c1077396b7be760061">&#9670;&#160;</a></span>linkNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Element , typename Size &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="common_8hpp.html#a8f111c87182b0df98cc94dbf5881d538">OperationResult</a> <a class="el" href="classcollection2_1_1Tree.html">collection2::Tree</a>&lt; Element, Size &gt;::linkNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; &amp;&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcollection2_1_1TreeNode.html">TreeNode</a>&lt; Element, Size &gt; *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TreeNodeSide&#160;</td>
+          <td class="paramname"><em>side</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ノードを別のノードに接続する </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>接続元のノード </td></tr>
+    <tr><td class="paramname">node</td><td>接続先のノード </td></tr>
+    <tr><td class="paramname">side</td><td>接続する位置 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
